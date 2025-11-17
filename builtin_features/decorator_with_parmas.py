@@ -1,4 +1,4 @@
-simport time
+import time
 
 
 def counter(iteration):

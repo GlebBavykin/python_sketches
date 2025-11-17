@@ -1,1 +1,4 @@
 .idea
+venv_sudo
+venv
+.venv

@@ -58,5 +58,3 @@ for vertical in reversed(range(m)):
         else:
             print(" ", end='')
     print()
-
-Попробовать нарисовать гиперболу и параболу
