@@ -98,7 +98,7 @@ class Student(CommitteeMember, Human):
         print(f"but also I'm a {self.degree} from {self.university} university")
 
     def pass_the_test(self):
-        print('I have passed this test')
+        print('I have passed this tests')
 
     @property
     def university(self):
