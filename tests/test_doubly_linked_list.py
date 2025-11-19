@@ -1,16 +1,18 @@
+import itertools
 import pytest
 from algorithms_and_data_structures.data_structures.linkedlist import DoublyLinkedList
 
 
-@pytest.fixture
+@pytest.fixture(scope='function')
 def linked_list():
     return DoublyLinkedList()
 
 
-def test_append_1(linked_list):
+def test_append(linked_list):
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
         linked_list.append(value)
+    assert len(linked_list) == len(values)
 
     current_node = linked_list.head
     for value in values:
@@ -18,3 +20,22 @@ def test_append_1(linked_list):
         current_node = current_node.next_node
 
 
+def test_reversed(linked_list):
+    values = [0, 1, 2, 3, 4, 5]
+    for value in values:
+        linked_list.append(value)
+
+    reversed(linked_list)
+    current_node = linked_list.head
+    for value in reversed(values):
+        assert current_node.value == value
+        current_node = current_node.next_node
+
+
+def test_iteration(linked_list):
+    values = [0, 1, 2, 3, 4, 5]
+    for value in values:
+        linked_list.append(value)
+    assert list(linked_list) == values
+    reversed_linked_list = reversed(linked_list)
+    assert list(reversed_linked_list) == list(reversed(values))

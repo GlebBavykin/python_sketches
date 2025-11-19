@@ -1,8 +1,9 @@
+
 class Node:
     def __init__(self, value):
-        self.value = value
         self.next_node = None
         self.previous_node = None
+        self.value = value
 
 class DoublyLinkedList:
     def __init__(self):
@@ -14,18 +15,17 @@ class DoublyLinkedList:
 
     def append(self, value):
         new_node = Node(value)
+        new_node.previous_node = self.tail
         self.tail = new_node
         if self.head is None:
             self.head = new_node
         else:
             current_node = self.head
-            previous_node = self.head
             while current_node.next_node:
                 current_node = current_node.next_node
-                pass
             current_node.next_node = new_node
-            new_node.previous_node = previous_node
         self.length += 1
+        return self
 
     def prepend(self, value):
         new_node = Node(value)
@@ -37,6 +37,7 @@ class DoublyLinkedList:
             self.head = new_node
             self.head.next_node.previous_node = new_node
             self.length += 1
+        return self
 
     def delete(self, value):
         current_node = self.head
@@ -48,12 +49,16 @@ class DoublyLinkedList:
         current_node.next_node.previous_node = current_node.previous_node
         del current_node
         self.length -= 1
+        return self
 
     def __reversed__(self):
         current_node = self.tail
-        while current_node.previous_node:
-            current_node = current_node.previous_node
-            print(current_node.value)
+        while current_node:
+            current_node.next_node, current_node.previous_node = current_node.previous_node, current_node.next_node
+            current_node = current_node.next_node
+        self.head, self.tail = self.tail, self.head
+        return self
+
 
     def __len__(self):
         return self.length
@@ -71,27 +76,3 @@ class DoublyLinkedList:
                 current_node = current_node.next_node
             self.iter_position += 1
             return current_node.value
-
-
-
-
-example = DoublyLinkedList()
-example.append(0)
-example.append(1)
-example.append(2)
-example.append(3)
-print(list(example))
-reversed(example)
-pass
-# example.append(4)
-# example.append(5)
-# # example.prepend(0)
-# # example.prepend(15)
-# # example.append(234)
-# # example.delete(3)
-# print(len(example))
-# print(list(example))
-# reversed(example)
-# print(list(example))
-#
-#

@@ -32,9 +32,11 @@ print('\n\n\n\n')
 for i in range(1, n):
     print(' ' * i, ' *' * (n - i), '* ' * i)
 
+
+print('\n\n\n\n')
 from math import sqrt
 
-radius = 16
+radius = 64
 
 for horizontal in range((2 * radius) + 1):
     for vertical in range((2 * radius) + 1):
@@ -43,18 +45,6 @@ for horizontal in range((2 * radius) + 1):
 
         if distance >= radius:
             print('*', end='')
-        else:
-            print(" ", end='')
-    print()
-
-m = 50
-for vertical in reversed(range(m)):
-    for horizontal in range(m):
-
-        distance = (horizontal) ** 2
-
-        if distance <= vertical:
-            print('* ', end='')
         else:
             print(" ", end='')
     print()
