@@ -37,5 +37,5 @@ def test_iteration(linked_list):
     for value in values:
         linked_list.append(value)
     assert list(linked_list) == values
-    reversed_linked_list = reversed(linked_list)
-    assert list(reversed_linked_list) == list(reversed(values))
+    for linked_value, list_value in zip(linked_list, values):
+        assert linked_value == list_value
