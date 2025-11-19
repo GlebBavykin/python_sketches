@@ -1,9 +1,11 @@
+from typing import Any
+
 
 class Node:
-    def __init__(self, data):
+    def __init__(self, item: Any):
         self.next = None
         self.previous = None
-        self.data = data
+        self.item = item
 
 class DoublyLinkedList:
     def __init__(self):
@@ -13,8 +15,11 @@ class DoublyLinkedList:
         self._iter_position = 0
 
 
-    def append(self, data):
-        new_node = Node(data)
+    def append(self, item: Any):
+        """
+            Adds an item to the right end
+        """
+        new_node = Node(item)
         new_node.previous = self._tail
         self._tail = new_node
         if self._head is None:
@@ -27,8 +32,11 @@ class DoublyLinkedList:
         self._length += 1
         return self
 
-    def prepend(self, data):
-        new_node = Node(data)
+    def append_left(self, item: Any):
+        """
+            Adds an item to the left end
+        """
+        new_node = Node(item)
         if self._head is None:
             self._head = new_node
             self._head.next = None
@@ -40,24 +48,58 @@ class DoublyLinkedList:
         return self
 
     def pop(self):
-        data = self._head.data
+        """
+            Removes and returns an item from the right end
+        """
+        item = self._head.item
         next_node = self._head.next
         del self._head
         self._head = next_node
+        next_node.previous = self._head
         self._length -= 1
-        return data
+        return item
 
-    def delete(self, data):
+    def pop_left(self):
+        """
+            Removes and returns an item from the left end
+        """
+        item = self._head.item
+        next_node = self._head.next
+        del self._head
+        self._head = next_node
+        next_node.previous = self._head
+        self._length -= 1
+        return item
+
+    def rotate(self, n: int):
+        """
+            Rotates the deque n steps to the right (positive n) or left (negative n)
+        """
+        pass
+
+    def remove(self, item: Any):
+        """
+            Removes the first occurrence of a value
+        """
         current_node = self._head
         while current_node.next:
-            if current_node.data == data:
+            if current_node.item == item:
                 break
             current_node = current_node.next
-        current_node.previous.next = current_node.next
-        current_node.next.previous = current_node.previous
-        del current_node
+        try:
+            current_node.previous.next = current_node.next
+            current_node.next.previous = current_node.previous
+            del current_node
+        except AttributeError:
+            raise ValueError("value not found")
         self._length -= 1
         return self
+
+    def count(self):
+        """
+            Returns the number of occurrences of a specific value
+        """
+        return self._length
 
     def __reversed__(self):
         current_node = self._tail
@@ -82,4 +124,4 @@ class DoublyLinkedList:
             for _ in range(self._iter_position):
                 current_node = current_node.next
             self._iter_position += 1
-            return current_node.data
+            return current_node.item
