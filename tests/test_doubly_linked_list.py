@@ -1,5 +1,7 @@
 import pytest
-from algorithms_and_data_structures.data_structures.linkedlist import DoublyLinkedList
+
+from algorithms_and_data_structures.data_structures.linkedlist import \
+    DoublyLinkedList
 
 
 @pytest.fixture(scope='function')
@@ -56,7 +58,6 @@ def test_pop(linked_list):
         assert len(linked_list) == len(values)
         assert list(linked_list) == values
     assert len(linked_list) == 0
-
 
 
 def test_remove_1(linked_list):

@@ -1,7 +1,7 @@
 from json import loads
-from jsonpath_ng import jsonpath, parse
 from pprint import pprint
 
+from jsonpath_ng import jsonpath, parse
 
 raw_string = """[
     {

@@ -1,6 +1,7 @@
+from pprint import pprint
+
 from lxml import etree
 from requests import get
-from pprint import pprint
 
 google = get("https://www.google.com/")
 parser = etree.HTMLParser()

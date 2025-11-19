@@ -1,7 +1,7 @@
 import asyncio
-from time import perf_counter
 import logging
 from logging.config import dictConfig
+from time import perf_counter
 
 logging_config = dict(
     version=1,

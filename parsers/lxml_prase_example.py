@@ -1,5 +1,7 @@
-from lxml import etree as et
 from pprint import pprint
+
+from lxml import etree as et
+
 root = et.Element("html", version="5.0")
 
 et.SubElement(root, "head")
