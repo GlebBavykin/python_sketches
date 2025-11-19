@@ -14,6 +14,17 @@ def test_append(linked_list):
     assert len(linked_list) == len(values)
     assert list(linked_list) == values
 
+
+def test_prepend(linked_list):
+    values = [0, 1, 2, 3, 4, 5]
+    for value in values:
+        linked_list.append(value)
+    linked_list.prepend(6)
+    values.insert(0, 6)
+    assert len(linked_list) == len(values)
+    assert list(linked_list) == values
+
+
 def test_reversed(linked_list):
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
