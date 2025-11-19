@@ -1,4 +1,3 @@
-import itertools
 import pytest
 from algorithms_and_data_structures.data_structures.linkedlist import DoublyLinkedList
 
