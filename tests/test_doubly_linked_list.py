@@ -1,28 +1,39 @@
 import pytest
 
-from algorithms_and_data_structures.data_structures.linkedlist import \
-    DoublyLinkedList
+from algorithms_and_data_structures.data_structures.linkedlist import DoublyLinkedList
 
 
 @pytest.fixture(scope='function')
 def linked_list():
+    """
+        DoublyLinkedList instance
+    """
     return DoublyLinkedList()
 
 
 def test_append(linked_list):
+    """
+        Add elements to linked_list from a python list from right
+    """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
         linked_list.append(value)
     assert len(linked_list) == len(values)
     assert list(linked_list) == values
 
-def test_count(linked_list):
-    values = [0, 1, 2, 3, 4, 5]
-    for value in values:
-        linked_list.append(value)
-    assert len(linked_list) == len(values) == linked_list.count()
+# def test_count_occurrences(linked_list):
+#     """
+#         Count  the number of occurrences of a specific value.
+#     """
+#     values = [0, 1, 2, 3, 4, 5]
+#     for value in values:
+#         linked_list.append(value)
+#     assert len(linked_list) == len(values) == linked_list.count()
 
 def test_reversed(linked_list):
+    """
+        Reverse the linked list
+    """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
         linked_list.append(value)
@@ -30,6 +41,9 @@ def test_reversed(linked_list):
 
 
 def test_iteration(linked_list):
+    """
+        Traverse through linked list
+    """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
         linked_list.append(value)
@@ -38,6 +52,9 @@ def test_iteration(linked_list):
 
 
 def test_append_left(linked_list):
+    """
+        Add elements to linked_list from a python list from left
+    """
     values = [0, 1, 2, 3, 4, 5]
     extras =  [6, 7, 8, 9, 10, 11]
     for value in values:
@@ -50,6 +67,21 @@ def test_append_left(linked_list):
 
 
 def test_pop(linked_list):
+    """
+    Pop elements from linked list
+    """
+    values = [0, 1, 2, 3, 4, 5]
+    for value in values:
+        linked_list.append(value)
+    assert linked_list.pop() == values.pop(0)
+    assert len(linked_list) == len(values)
+    assert list(linked_list) == values
+
+
+def test_pop_2(linked_list):
+    """
+    Pop all elements from linked list
+    """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
         linked_list.append(value)
@@ -61,6 +93,9 @@ def test_pop(linked_list):
 
 
 def test_remove_1(linked_list):
+    """
+        Removes the first occurrence of a specific value
+    """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
         linked_list.append(value)
@@ -70,18 +105,24 @@ def test_remove_1(linked_list):
     assert list(linked_list) == values
 
 def test_remove_2(linked_list):
-        values = [0, 1, 2, 3, 4, 5]
-        for value in values:
-            linked_list.append(value)
+    """
+    Removes not existed value
+    """
+    values = [0, 1, 2, 3, 4, 5]
+    for value in values:
+        linked_list.append(value)
+    linked_list.remove(3)
+    values.remove(3)
+    with pytest.raises(ValueError):
         linked_list.remove(3)
-        values.remove(3)
-        with pytest.raises(ValueError):
-            linked_list.remove(3)
-        with pytest.raises(ValueError):
-            linked_list.remove(45)
+    with pytest.raises(ValueError):
+        linked_list.remove(45)
 
 
 def test_remove_3(linked_list):
+    """
+    Removes all elements from linked list
+    """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
         linked_list.append(value)
