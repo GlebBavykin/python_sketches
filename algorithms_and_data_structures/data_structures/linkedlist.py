@@ -39,6 +39,14 @@ class DoublyLinkedList:
             self._length += 1
         return self
 
+    def pop(self):
+        data = self._head.data
+        next_node = self._head.next
+        del self._head
+        self._head = next_node
+        self._length -= 1
+        return data
+
     def delete(self, data):
         current_node = self._head
         while current_node.next:

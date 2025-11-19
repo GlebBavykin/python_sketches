@@ -25,6 +25,15 @@ def test_prepend(linked_list):
     assert list(linked_list) == values
 
 
+def test_pop(linked_list):
+    values = [0, 1, 2, 3, 4, 5]
+    for value in values:
+        linked_list.append(value)
+    assert linked_list.pop() == values.pop(0)
+    assert len(linked_list) == len(values)
+    assert list(linked_list) == values
+
+
 def test_reversed(linked_list):
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
