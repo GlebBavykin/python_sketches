@@ -75,12 +75,6 @@ class DoublyLinkedList:
         self._length -= 1
         return item
 
-    def rotate(self, n: int):
-        """
-            Rotates n steps to the right (positive n) or left (negative n)
-        """
-        pass
-
     def remove(self, item: Any):
         """
             Removes the first occurrence of item
