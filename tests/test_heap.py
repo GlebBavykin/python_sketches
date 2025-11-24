@@ -8,21 +8,21 @@ def priority_queue():
     """
         priority_queue instance
     """
-    return PQ(storage_size=6)
+    return PQ(queue_size=6)
 
 
 def test_append(priority_queue):
     """
-        Add elements to linked_list from a python list from right
+        Add elements to priority_queue from a python list
     """
-    data = [('Haylee', 100),
-            ('Cody', 80),
-            ('Tatum', 150),
-            ('Brayan', 33),
-            ('David', 70),
-            ('Tanner', 71),
+    data = [(100, 'Haylee'),
+            (80, 'Cody'),
+            (150, 'Tatum'),
+            (53, 'Brayan'),
+            (70, 'David'),
+            (71, 'Tanner'),
     ]
     for item in data:
         priority_queue.put(*item)
-    for item in sorted(data, key=lambda name: name[1], reverse=True):
+    for item in sorted(data, reverse=True):
         assert priority_queue.pop() == Entry(*item)

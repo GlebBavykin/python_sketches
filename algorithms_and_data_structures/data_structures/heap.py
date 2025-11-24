@@ -1,18 +1,18 @@
 from collections import namedtuple
 
-Entry = namedtuple('Entry', ['value', 'priority'])
+Entry = namedtuple('Entry', ['priority', 'data'])
 
 class PQ:
-    def __init__(self, storage_size: int):
-        self.storage_size: int = storage_size
-        self.storage: list[Entry | None] = [None] * (storage_size + 1)
+    def __init__(self, queue_size: int):
+        self.queue_size: int = queue_size
+        self.storage: list[Entry | None] = [None] * (queue_size + 1)
         self.number_of_items = 0
 
-    def put(self, value: str, priority: int):
-        if self.number_of_items == self.storage_size:
+    def put(self, priority: int, data: str):
+        if self.number_of_items == self.queue_size:
             raise RuntimeError("PriorityQueue is Full")
         self.number_of_items += 1
-        self.storage[self.number_of_items] = Entry(value, priority)
+        self.storage[self.number_of_items] = Entry(priority, data)
         self.swim(self.number_of_items)
 
     def pop(self):
