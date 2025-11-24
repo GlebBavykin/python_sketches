@@ -45,29 +45,3 @@ class PQ:
 
     def swap_by_index(self, left_index: int, right_index: int):
         self.storage[left_index], self.storage[right_index] = self.storage[right_index], self.storage[left_index]
-
-
-
-pq_example = PQ(10)
-pq_example.put('Gleb', 100)
-pq_example.put('Olga', 80)
-pq_example.put('Kaleb', 150)
-pq_example.put('Katrin', 33)
-pq_example.put('Vladimir', 70)
-pq_example.put('Vladislav', 71)
-pq_example.put('Gleb', 101)
-pq_example.put('Olga', 81)
-pq_example.put('Kaleb', 151)
-pq_example.put('Katrin', 31)
-print(list(filter(lambda item: item is not None, [getattr(item, 'priority', None) for item in pq_example.storage])))
-print(pq_example.pop())
-print(pq_example.pop())
-print(pq_example.pop())
-print(pq_example.pop())
-print(pq_example.pop())
-print(pq_example.pop())
-print(pq_example.pop())
-print(pq_example.pop())
-print(pq_example.pop())
-print(pq_example.pop())
-print(list(filter(lambda item: item is not None, [getattr(item, 'priority', None) for item in pq_example.storage])))
