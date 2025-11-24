@@ -1,6 +1,6 @@
 import pytest
 
-from algorithms_and_data_structures.data_structures.heap import PQ, Entry
+from data_structures.heap import PQ, Entry
 
 
 @pytest.fixture(scope='function')

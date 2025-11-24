@@ -1,6 +1,6 @@
 import pytest
 
-from algorithms_and_data_structures.data_structures.linkedlist import DoublyLinkedList
+from data_structures.linkedlist import DoublyLinkedList
 
 
 @pytest.fixture(scope='function')
