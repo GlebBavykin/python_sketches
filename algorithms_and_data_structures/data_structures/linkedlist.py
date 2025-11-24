@@ -51,11 +51,15 @@ class DoublyLinkedList:
         """
             Removes and returns an item from the right end
         """
-        item = self._head.item
-        next_node = self._head.next
-        del self._head
-        self._head = next_node
-        next_node.previous = self._head
+        if self._head is None:
+            raise ValueError("List is empty")
+        else:
+            item = self._head.item
+            self._head.item = None
+            next_node = self._head.next if self._head.next else None
+            self._head = next_node
+        if self._head is not None:
+            next_node.previous = self._head
         self._length -= 1
         return item
 
@@ -73,25 +77,32 @@ class DoublyLinkedList:
 
     def rotate(self, n: int):
         """
-            Rotates the deque n steps to the right (positive n) or left (negative n)
+            Rotates n steps to the right (positive n) or left (negative n)
         """
         pass
 
     def remove(self, item: Any):
         """
-            Removes the first occurrence of a value
+            Removes the first occurrence of item
         """
+        if self._head is None:
+            raise ValueError("List is empty")
         current_node = self._head
         while current_node.next:
             if current_node.item == item:
                 break
             current_node = current_node.next
+        if current_node.next is None and current_node.previous is None:
+           self._head = None
         try:
-            current_node.previous.next = current_node.next
-            current_node.next.previous = current_node.previous
+            if current_node.next is None and current_node.previous is None:
+                current_node.item = None
+            else:
+                current_node.previous.next = current_node.next
+                current_node.next.previous = current_node.previous
             del current_node
         except AttributeError:
-            raise ValueError("value not found")
+            raise ValueError("item not found")
         self._length -= 1
         return self
 
