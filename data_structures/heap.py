@@ -23,7 +23,7 @@ class PQ:
         self.storage[self.number_of_items] = None
         self.number_of_items -= 1
         self.sink(1)
-        return max_priority_entry
+        return tuple(max_priority_entry)
 
     def sink(self, parent_index: int):
         while 2 * parent_index <= self.number_of_items:

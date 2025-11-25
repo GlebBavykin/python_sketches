@@ -1,6 +1,6 @@
 import pytest
 
-from data_structures.heap import PQ, Entry
+from data_structures.heap import PQ
 
 
 @pytest.fixture(scope='function')
@@ -25,4 +25,4 @@ def test_append(priority_queue):
     for item in data:
         priority_queue.put(*item)
     for item in sorted(data, reverse=True):
-        assert priority_queue.pop() == Entry(*item)
+        assert priority_queue.pop() == item
