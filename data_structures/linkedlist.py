@@ -20,15 +20,12 @@ class DoublyLinkedList:
             Adds an item to the right end
         """
         new_node = Node(item)
-        new_node.previous = self._tail
-        self._tail = new_node
         if self._head is None:
             self._head = new_node
         else:
-            current_node = self._head
-            while current_node.next:
-                current_node = current_node.next
-            current_node.next = new_node
+            self._tail.next = new_node
+        new_node.previous = self._tail
+        self._tail = new_node
         self._length += 1
         return self
 
