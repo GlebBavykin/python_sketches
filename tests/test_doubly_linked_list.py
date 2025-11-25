@@ -57,6 +57,43 @@ def test_append_left(linked_list):
     assert len(linked_list) == len(values)
     assert list(linked_list) == values
 
+def test_pop_1(linked_list):
+    """
+    Pop elements
+    """
+    values = [0, 1, 2, 3, 4, 5]
+    for value in values:
+        linked_list.append(value)
+    assert linked_list.pop() == values.pop(-1)
+    assert len(linked_list) == len(values)
+    assert list(linked_list) == values
+
+
+def test_pop_2(linked_list):
+    """
+    Pop head item
+    """
+    linked_list.append(0)
+    assert linked_list.pop() == 0
+    with pytest.raises(ValueError):
+        linked_list.pop()
+    assert len(linked_list) == 0
+
+
+def test_pop_3(linked_list):
+    """
+    Pop all items
+    """
+    values = [0, 1, 2, 3, 4, 5]
+    for value in values:
+        linked_list.append(value)
+    for value in values:
+        assert linked_list.pop() == value
+    assert len(linked_list) == 0
+    with pytest.raises(ValueError):
+        linked_list.pop()
+    assert len(linked_list) == 0
+
 
 def test_pop_left_1(linked_list):
     """

@@ -48,12 +48,8 @@ class DoublyLinkedList:
         """
             Removes and returns an item from the right end
         """
-        item = self._head.item
-        next_node = self._head.next
-        del self._head
-        self._head = next_node
-        next_node.previous = self._head
-        self._length -= 1
+        item = self._tail.item
+        self.delete_node(self._tail)
         return item
 
 
@@ -61,16 +57,8 @@ class DoublyLinkedList:
         """
             Removes and returns an item from the left end
         """
-        if self._head is None:
-            raise ValueError("List is empty")
-        else:
-            item = self._head.item
-            self._head.item = None
-            next_node = self._head.next if self._head.next else None
-            self._head = next_node
-        if self._head is not None:
-            next_node.previous = self._head
-        self._length -= 1
+        item = self._head.item
+        self.delete_node(self._head)
         return item
 
     def delete_node(self, node: Node):
@@ -79,14 +67,16 @@ class DoublyLinkedList:
         """
         if node is self._head and node.next is None and node.previous is None:
             self._head = None
-        elif node is self._head and node.previous is None and node.next is not None:
+        elif node is self._head and node.next is not None and node.previous is None:
             node.next.previous = None
             self._head = node.next
             del node
-        elif node is self._tail and node.next is None:
+        elif node is self._tail and node.next is None and node.previous is not None:
             node.previous.next = None
             self._tail = node.previous
             del node
+        elif node is self._tail and node.next is not None and node.previous is not None:
+            pass
         else:
             node.previous.next = node.next
             node.next.previous = node.previous
