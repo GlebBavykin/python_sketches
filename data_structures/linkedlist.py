@@ -75,6 +75,23 @@ class DoublyLinkedList:
         self._length -= 1
         return item
 
+    def delete_node(self, node: Node):
+        if node is self._head and node.next is None and node.previous is None:
+            self._head = None
+        elif node is self._head and node.previous is None and node.next is not None:
+            node.next.previous = None
+            self._head = node.next
+            del node
+        elif node is self._tail and node.next is None:
+            node.previous.next = None
+            self._tail = node.previous
+            del node
+        else:
+            node.previous.next = node.next
+            node.next.previous = node.previous
+            del node
+        self._length -= 1
+
     def remove(self, item: Any):
         """
             Removes the first occurrence of item
@@ -86,18 +103,9 @@ class DoublyLinkedList:
             if current_node.item == item:
                 break
             current_node = current_node.next
-        if current_node.next is None and current_node.previous is None:
-           self._head = None
-        try:
-            if current_node.next is None and current_node.previous is None:
-                current_node.item = None
-            else:
-                current_node.previous.next = current_node.next
-                current_node.next.previous = current_node.previous
-            del current_node
-        except AttributeError:
-            raise ValueError("item not found")
-        self._length -= 1
+        if current_node is self._tail and current_node is not self._head:
+            raise ValueError("Item not found")
+        self.delete_node(current_node)
         return self
 
     def count(self):
