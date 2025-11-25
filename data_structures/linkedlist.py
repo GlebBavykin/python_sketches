@@ -77,6 +77,9 @@ class DoublyLinkedList:
         return item
 
     def delete_node(self, node: Node):
+        """
+            Unlink the node from linked list and delete node
+        """
         if node is self._head and node.next is None and node.previous is None:
             self._head = None
         elif node is self._head and node.previous is None and node.next is not None:
@@ -93,9 +96,9 @@ class DoublyLinkedList:
             del node
         self._length -= 1
 
-    def remove(self, item: Any):
+    def find(self, item: Any):
         """
-            Removes the first occurrence of item
+            Find the first occurrence of a specific value and return node
         """
         if self._head is None:
             raise ValueError("List is empty")
@@ -106,7 +109,14 @@ class DoublyLinkedList:
             current_node = current_node.next
         if current_node is self._tail and current_node is not self._head:
             raise ValueError("Item not found")
-        self.delete_node(current_node)
+        return current_node
+
+    def remove(self, item: Any):
+        """
+            Removes the first occurrence of item
+        """
+        found_node = self.find(item)
+        self.delete_node(found_node)
         return self
 
     def count(self):

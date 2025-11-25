@@ -60,7 +60,7 @@ def test_append_left(linked_list):
 
 def test_pop_left_1(linked_list):
     """
-    Pop elements from linked list
+    Pop elements from left
     """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
@@ -72,7 +72,7 @@ def test_pop_left_1(linked_list):
 
 def test_pop_left_2(linked_list):
     """
-    Pop head item
+    Pop head item from left
     """
     linked_list.append(0)
     assert linked_list.pop_left() == 0
@@ -83,7 +83,7 @@ def test_pop_left_2(linked_list):
 
 def test_pop_left_3(linked_list):
     """
-    Pop all items
+    Pop all items from left
     """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
