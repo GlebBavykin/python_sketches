@@ -58,30 +58,30 @@ def test_append_left(linked_list):
     assert list(linked_list) == values
 
 
-def test_pop_1(linked_list):
+def test_pop_left_1(linked_list):
     """
     Pop elements from linked list
     """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
         linked_list.append(value)
-    assert linked_list.pop() == values.pop(0)
+    assert linked_list.pop_left() == values.pop(0)
     assert len(linked_list) == len(values)
     assert list(linked_list) == values
 
 
-def test_pop_2(linked_list):
+def test_pop_left_2(linked_list):
     """
     Pop head item
     """
     linked_list.append(0)
-    assert linked_list.pop() == 0
+    assert linked_list.pop_left() == 0
     with pytest.raises(ValueError):
-        linked_list.pop()
+        linked_list.pop_left()
     assert len(linked_list) == 0
 
 
-def test_pop_3(linked_list):
+def test_pop_left_3(linked_list):
     """
     Pop all items
     """
@@ -89,10 +89,10 @@ def test_pop_3(linked_list):
     for value in values:
         linked_list.append(value)
     for value in values:
-        assert linked_list.pop() == value
+        assert linked_list.pop_left() == value
     assert len(linked_list) == 0
     with pytest.raises(ValueError):
-        linked_list.pop()
+        linked_list.pop_left()
     assert len(linked_list) == 0
 
 
@@ -146,5 +146,5 @@ def test_remove_4(linked_list):
         linked_list.remove(value)
     assert len(linked_list) == 0
     with pytest.raises(ValueError):
-        linked_list.pop()
+        linked_list.remove(0)
     assert len(linked_list) == 0

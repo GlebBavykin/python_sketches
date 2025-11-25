@@ -51,6 +51,19 @@ class DoublyLinkedList:
         """
             Removes and returns an item from the right end
         """
+        item = self._head.item
+        next_node = self._head.next
+        del self._head
+        self._head = next_node
+        next_node.previous = self._head
+        self._length -= 1
+        return item
+
+
+    def pop_left(self):
+        """
+            Removes and returns an item from the left end
+        """
         if self._head is None:
             raise ValueError("List is empty")
         else:
@@ -60,18 +73,6 @@ class DoublyLinkedList:
             self._head = next_node
         if self._head is not None:
             next_node.previous = self._head
-        self._length -= 1
-        return item
-
-    def pop_left(self):
-        """
-            Removes and returns an item from the left end
-        """
-        item = self._head.item
-        next_node = self._head.next
-        del self._head
-        self._head = next_node
-        next_node.previous = self._head
         self._length -= 1
         return item
 
