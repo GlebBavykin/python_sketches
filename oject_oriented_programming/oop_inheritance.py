@@ -4,7 +4,9 @@ class Polygon:
         self.sides = [0 for i in range(no_of_sides)]
 
     def inputSides(self):
-        self.sides = [float(input("Enter side  " + str(i + 1) + " : ")) for i in range(self.n)]
+        self.sides = [
+            float(input("Enter side  " + str(i + 1) + " : ")) for i in range(self.n)
+        ]
 
     def dispSides(self):
         for i in range(self.n):
@@ -20,7 +22,8 @@ class Triangle(Polygon):
         # calculate the semi-perimeter
         s = (a + b + c) / 2
         area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
-        print('The area of the triangle is %0.2f' % area)
+        print("The area of the triangle is %0.2f" % area)
+
 
 my_triangle = Triangle()
 my_triangle.inputSides()

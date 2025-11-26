@@ -1,10 +1,10 @@
 class Human(object):
 
     def __init__(self, name, age):
-        print('Start Human.__init__()')
+        print("Start Human.__init__()")
         self._name = name
         self._age = age
-        print('End Human.__init__()')
+        print("End Human.__init__()")
 
     def __repr__(self):
         return f"name={self._name}, age={self._age}"
@@ -43,11 +43,11 @@ class Human(object):
 class CommitteeMember(Human):
 
     def __init__(self, name, age, committee_name, rank):
-        print('Start CommitteeMember.__init__()')
+        print("Start CommitteeMember.__init__()")
         super().__init__(name, age)
         self._committee_name = committee_name
         self._rank = rank
-        print('End CommitteeMember.__init__()')
+        print("End CommitteeMember.__init__()")
 
     def who_are_you(self):
         print(f"I am a member of the committee with {self.rank} rank")
@@ -83,11 +83,11 @@ class CommitteeMember(Human):
 class Student(CommitteeMember, Human):
 
     def __init__(self, name, age, university, degree, committee_name=None, rank=None):
-        print('Start Student.__init__()')
+        print("Start Student.__init__()")
         super().__init__(name, age, committee_name, rank)
         self._university = university
         self._degree = degree
-        print('End Student.__init__()')
+        print("End Student.__init__()")
 
     def __repr__(self):
         return f"name={self.name}, age={self.age}, university={self.university}, degree={self.degree}, committee_name={self.committee_name}, rank={self.rank}"
@@ -98,7 +98,7 @@ class Student(CommitteeMember, Human):
         print(f"but also I'm a {self.degree} from {self.university} university")
 
     def pass_the_test(self):
-        print('I have passed this test')
+        print("I have passed this tests")
 
     @property
     def university(self):
@@ -125,7 +125,7 @@ class Student(CommitteeMember, Human):
         del self._degree
 
 
-gleb = Student('Gleb', 31, 'ITMO', 'master', 'child protection', '1')
+gleb = Student("Gleb", 31, "ITMO", "master", "child protection", "1")
 print(gleb.name)
 print(gleb.age)
 gleb.greeting()

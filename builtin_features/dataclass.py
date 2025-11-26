@@ -1,4 +1,4 @@
-from dataclasses import dataclass, asdict
+from dataclasses import asdict, dataclass
 
 
 @dataclass
@@ -8,8 +8,8 @@ class Book:
     price: float
 
 
-book = Book('Onegin', 'Pushkin', 14.3)
-other_book = Book('Hamlet', 'Shakespeare', 20.0)
+book = Book("Onegin", "Pushkin", 14.3)
+other_book = Book("Hamlet", "Shakespeare", 20.0)
 
 print(book)
 print(other_book)
@@ -18,9 +18,9 @@ assert book != other_book
 
 
 class Author:
-    name: str = 'anonymous'
-    age: str = '1000'
-    gender: str = 'male'
+    name: str = "anonymous"
+    age: str = "1000"
+    gender: str = "male"
 
     def __init__(self, name, age):
         self.__name = name
@@ -57,16 +57,16 @@ class Author:
         del self.__age
 
 
-my_author = Author('Gleb', 31)
+my_author = Author("Gleb", 31)
 print(my_author.name)
 print((my_author.age))
 print(my_author.gender)
 print(Author.gender)
-Author.gender = 'female'
+Author.gender = "female"
 print(my_author.name)
 print((my_author.age))
 print(my_author.gender)
-another_author = Author('Kaleb', 25)
+another_author = Author("Kaleb", 25)
 print(another_author.name)
 print((another_author.age))
 print(another_author.gender)

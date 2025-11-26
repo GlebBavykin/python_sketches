@@ -1,16 +1,22 @@
 class Cat:
     pass
 
+
 class Dog:
     pass
+
 
 cat = Cat()
 dog = Dog()
 
 
-def mew(): print("Mew!")
+def mew():
+    print("Mew!")
 
-def woof(): print("Woof!")
+
+def woof():
+    print("Woof!")
+
 
 example = dict()
 example.update({cat: dog, dog: cat})
@@ -21,5 +27,3 @@ dog.go_woof = woof
 print(example)
 example[cat].go_woof()
 example[dog].go_mew()
-
-
