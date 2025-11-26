@@ -87,7 +87,7 @@ def test_pop_3(linked_list):
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
         linked_list.append(value)
-    for value in values:
+    for value in reversed(values):
         assert linked_list.pop() == value
     assert len(linked_list) == 0
     with pytest.raises(ValueError):
