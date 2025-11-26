@@ -24,8 +24,8 @@ add_two(3)
 add_two(3)
 
 # Applying decorator to a lambda
-print((trace(lambda x: x ** 2))(3))
-print((trace(lambda x: x ** 2))(3))
+print((trace(lambda x: x**2))(3))
+print((trace(lambda x: x**2))(3))
 
 
 def outer_func(x):

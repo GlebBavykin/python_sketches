@@ -8,5 +8,6 @@ dependencies = [
     "requests",
     "jsonpath_ng",
     "lxml",
-    "pytest"
+    "pytest",
+    "black"
 ]

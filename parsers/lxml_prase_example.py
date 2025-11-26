@@ -32,4 +32,4 @@ print(root.getparent())
 print(root[1].getnext())
 print(root[1].getprevious())
 
-print(root.findtext('title'))
+print(root.findtext("title"))

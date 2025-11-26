@@ -1,14 +1,15 @@
 # Python code to illustrate
 # Decorators with parameters in Python  (Multi-level Decorators)
 
+
 def my_decorator(func):
-    print('Before call message 1')
+    print("Before call message 1")
 
     def wrapper(*args, **kwargs):
-        print('Before call message 2')
+        print("Before call message 2")
         return func(*args, **kwargs)
 
-    print('After call message 1')
+    print("After call message 1")
     return wrapper
 
 
@@ -16,6 +17,7 @@ def my_decorator(func):
 def print_number(number):
     print(number)
     return number
+
 
 ls = print_number(2)
 

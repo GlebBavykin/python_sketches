@@ -5,24 +5,20 @@ from time import perf_counter
 
 logging_config = dict(
     version=1,
-    formatters={
-        'f': {'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'}
-    },
+    formatters={"f": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"}},
     handlers={
-        'h': {'class': 'logging.StreamHandler',
-              'formatter': 'f',
-              'level': logging.INFO}
+        "h": {"class": "logging.StreamHandler", "formatter": "f", "level": logging.INFO}
     },
     root={
-        'handlers': ['h'],
-        'level': logging.INFO,
+        "handlers": ["h"],
+        "level": logging.INFO,
     },
 )
 
 dictConfig(logging_config)
 
 logger = logging.getLogger()
-logger.info('often makes a very good meal of %s', 'visiting tourists')
+logger.info("often makes a very good meal of %s", "visiting tourists")
 
 
 async def count():
@@ -44,4 +40,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

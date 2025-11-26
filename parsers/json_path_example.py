@@ -60,8 +60,7 @@ my_json = loads(raw_string)
 pprint(my_json)
 
 
-
-data = parse('$[*].accounts[*].two_factor_authentication.is_set')
+data = parse("$[*].accounts[*].two_factor_authentication.is_set")
 ls = data.find(my_json)
 password_list = [item.value for item in ls]
 pprint(password_list)

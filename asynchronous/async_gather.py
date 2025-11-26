@@ -26,4 +26,5 @@ async def monitor():
 async def main():
     await asyncio.gather(fetcher(), monitor())
 
+
 asyncio.run(main())

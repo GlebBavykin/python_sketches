@@ -7,6 +7,7 @@ class Node:
         self.previous = None
         self.item = item
 
+
 class DoublyLinkedList:
     def __init__(self):
         self._head = None
@@ -14,10 +15,9 @@ class DoublyLinkedList:
         self._length = 0
         self._iter_position = 0
 
-
     def append(self, item: Any):
         """
-            Adds an item to the right end
+        Adds an item to the right end
         """
         new_node = Node(item)
         if self._head is None:
@@ -31,7 +31,7 @@ class DoublyLinkedList:
 
     def append_left(self, item: Any):
         """
-            Adds an item to the left end
+        Adds an item to the left end
         """
         new_node = Node(item)
         if self._head is None:
@@ -46,30 +46,29 @@ class DoublyLinkedList:
 
     def pop(self):
         """
-            Removes and returns an item from the right end
+        Removes and returns an item from the right end
         """
         try:
             item = self._tail.item
             self.delete_node(self._tail)
         except AttributeError:
-            raise ValueError('List is empty')
+            raise ValueError("List is empty")
         return item
-
 
     def pop_left(self):
         """
-            Removes and returns an item from the left end
+        Removes and returns an item from the left end
         """
         try:
             item = self._head.item
             self.delete_node(self._head)
         except AttributeError:
-            raise ValueError('List is empty')
+            raise ValueError("List is empty")
         return item
 
     def delete_node(self, node: Node):
         """
-            Unlink the node from linked list and delete node
+        Unlink the node from linked list and delete node
         """
         if node is self._head and node.next is None and node.previous is None:
             self._head = None
@@ -91,7 +90,7 @@ class DoublyLinkedList:
 
     def find(self, item: Any):
         """
-            Find the first occurrence of a specific value and return node
+        Find the first occurrence of a specific value and return node
         """
         if self._head is None:
             raise ValueError("List is empty")
@@ -106,7 +105,7 @@ class DoublyLinkedList:
 
     def remove(self, item: Any):
         """
-            Removes the first occurrence of item
+        Removes the first occurrence of item
         """
         found_node = self.find(item)
         self.delete_node(found_node)
@@ -114,14 +113,17 @@ class DoublyLinkedList:
 
     def count(self):
         """
-            Returns the number of occurrences of a specific value
+        Returns the number of occurrences of a specific value
         """
         return self._length
 
     def __reversed__(self):
         current_node = self._tail
         while current_node:
-            current_node.next, current_node.previous = current_node.previous, current_node.next
+            current_node.next, current_node.previous = (
+                current_node.previous,
+                current_node.next,
+            )
             current_node = current_node.next
         self._head, self._tail = self._tail, self._head
         return self

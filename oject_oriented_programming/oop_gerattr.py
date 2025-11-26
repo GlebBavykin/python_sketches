@@ -1,12 +1,13 @@
 # Python program to illustrate the use of
 # @property decorator
 
+
 # Defining class
 class Portal:
 
     # Defining __init__ method
     def __init__(self):
-        self.__name = ''
+        self.__name = ""
 
     # Using @property decorator
     @property
@@ -29,10 +30,10 @@ class Portal:
 p = Portal()
 
 # Setting name
-p.name = 'GeeksforGeeks'
+p.name = "GeeksforGeeks"
 
 # Prints name
-print(getattr(p, 'name'))
+print(getattr(p, "name"))
 
 # # Deletes name
 # del p.name

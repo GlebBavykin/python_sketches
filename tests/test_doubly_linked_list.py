@@ -3,17 +3,17 @@ import pytest
 from data_structures.linkedlist import DoublyLinkedList
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def linked_list():
     """
-        DoublyLinkedList instance
+    DoublyLinkedList instance
     """
     return DoublyLinkedList()
 
 
 def test_append(linked_list):
     """
-        Add elements to linked_list from a python list from right
+    Add elements to linked_list from a python list from right
     """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
@@ -24,7 +24,7 @@ def test_append(linked_list):
 
 def test_reversed(linked_list):
     """
-        Reverse the linked list
+    Reverse the linked list
     """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
@@ -32,9 +32,9 @@ def test_reversed(linked_list):
     assert list(reversed(linked_list)) == list(reversed(values))
 
 
-def test_iteration(linked_list):
+def test_traversing_list(linked_list):
     """
-        Traverse through linked list
+    Traverse through linked list
     """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
@@ -45,10 +45,10 @@ def test_iteration(linked_list):
 
 def test_append_left(linked_list):
     """
-        Add elements to linked_list from a python list from left
+    Add elements to linked_list from a python list from left
     """
     values = [0, 1, 2, 3, 4, 5]
-    extras =  [6, 7, 8, 9, 10, 11]
+    extras = [6, 7, 8, 9, 10, 11]
     for value in values:
         linked_list.append(value)
     for extra in extras:
@@ -57,9 +57,10 @@ def test_append_left(linked_list):
     assert len(linked_list) == len(values)
     assert list(linked_list) == values
 
+
 def test_pop_1(linked_list):
     """
-    Pop elements
+    Pop elements from the right
     """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
@@ -71,7 +72,7 @@ def test_pop_1(linked_list):
 
 def test_pop_2(linked_list):
     """
-    Pop head item
+    Pop head item from the right
     """
     linked_list.append(0)
     assert linked_list.pop() == 0
@@ -82,7 +83,7 @@ def test_pop_2(linked_list):
 
 def test_pop_3(linked_list):
     """
-    Pop all items
+    Pop all items from the right
     """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
@@ -135,7 +136,7 @@ def test_pop_left_3(linked_list):
 
 def test_remove_1(linked_list):
     """
-        Removes the first occurrence of a specific value
+    Removes the first occurrence of a specific value
     """
     values = [0, 1, 2, 3, 4, 5]
     for value in values:
@@ -144,6 +145,7 @@ def test_remove_1(linked_list):
     values.remove(3)
     assert len(linked_list) == len(values)
     assert list(linked_list) == values
+
 
 def test_remove_2(linked_list):
     """

@@ -49,7 +49,7 @@ def greeting(name):
     return hello
 
 
-greet = greeting('Gleb')
+greet = greeting("Gleb")
 print(greet)
 print(greet())
 
@@ -86,7 +86,7 @@ def smart_divide(func):
         if b == 0:
             raise ZeroDivisionError
         result = func(a, b)
-        print("I'v divided ", a, "and ", b, '= ', result)
+        print("I'v divided ", a, "and ", b, "= ", result)
         return result
 
     return inner
