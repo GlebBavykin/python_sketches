@@ -17,7 +17,7 @@ from algorithms.polish_notation import evaluate_pn
 )
 def test_simple_expressions(reverse, expression, result):
     """
-    Evaluate simple reverse polish expression
+    Evaluate simple polish expressions
     """
     assert evaluate_pn(expression, reverse) == result
 
@@ -37,7 +37,7 @@ def test_simple_expressions(reverse, expression, result):
 )
 def test_invalid_expressions(reverse, expression, result):
     """
-    Evaluate invalid expression
+    Evaluate invalid expressions
     """
     with pytest.raises(Exception):
         assert evaluate_pn(expression, reverse) == result
@@ -60,6 +60,6 @@ def test_invalid_expressions(reverse, expression, result):
 )
 def test_complex_expressions(reverse, expression, result):
     """
-    Evaluate complex reverse polish expression
+    Evaluate complex polish expressions
     """
     assert evaluate_pn(expression, reverse) == result
