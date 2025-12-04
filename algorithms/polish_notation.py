@@ -1,21 +1,31 @@
 from collections import deque
 
 
-def evaluate_rpn(expression: str) -> int:
+def evaluate_pn(expression: str, reverse=True) -> int:
     """
     Evaluate reverse polish expression and return result
     """
     stack = deque()
-    for char in expression.split():
+    tokens = expression.split()
+    if not reverse:
+        tokens = tokens[::-1]
+
+    for char in tokens:
         if char == "+":
             a, b = int(stack.pop()), int(stack.pop())
             stack.append(a + b)
         elif char == "-":
             a, b = int(stack.pop()), int(stack.pop())
-            stack.append(b - a)
+            if reverse:
+                stack.append(b - a)
+            else:
+                stack.append(a - b)
         elif char == "/":
             a, b = int(stack.pop()), int(stack.pop())
-            stack.append(b / a)
+            if reverse:
+                stack.append(b / a)
+            else:
+                stack.append(a / b)
         elif char == "*":
             a, b = int(stack.pop()), int(stack.pop())
             stack.append(a * b)
