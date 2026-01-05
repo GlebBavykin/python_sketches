@@ -9,6 +9,5 @@ dependencies = [
     "jsonpath_ng",
     "lxml",
     "pytest",
-    "black",
-    "aiohttp"
+    "black"
 ]
