@@ -12,3 +12,8 @@ dependencies = [
     "black",
     "pytest",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.4",
+]
