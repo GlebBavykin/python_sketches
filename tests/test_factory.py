@@ -5,7 +5,7 @@ from typing import Optional
 
 import pytest
 
-from design_pattern.factory import Settings, Saver
+from design_pattern.creational.factory import Settings, Saver
 
 TEST_CONFIG = dict(a=1, b=2, c=3)
 CONFIG_PATH = "my_file.pickle"

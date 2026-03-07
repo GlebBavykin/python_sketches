@@ -1,6 +1,6 @@
 import pytest
 
-from design_pattern.builder import Product, Builder
+from design_pattern.creational.builder import Product, Builder
 
 
 class ConcreteBuilder(Builder):
