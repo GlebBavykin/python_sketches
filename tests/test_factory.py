@@ -13,7 +13,7 @@ CONFIG_PATH = "my_file.pickle"
 
 class JsonSaver(Saver):
     """
-        Save settings into json
+        Save settings into JSON
     """
     def __init__(self):
         self.data: Optional[dict] = None

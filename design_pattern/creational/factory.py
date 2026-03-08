@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from abc import abstractmethod
-from typing import Any, Protocol, Optional
+from abc import abstractmethod, ABC
+from typing import Any, Optional
 
 
-class Saver(Protocol):
+class Saver(ABC):
     @abstractmethod
     def save(self) -> Any:
         pass
