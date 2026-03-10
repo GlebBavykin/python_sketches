@@ -24,7 +24,7 @@ class AbstractSaver(ABC):
 
 class JsonSaver(AbstractSaver):
     """
-        Save settings into JSON
+        Save settings into JSON string
     """
 
     def __init__(self):
@@ -39,7 +39,7 @@ class JsonSaver(AbstractSaver):
 
 class YamlSaver(AbstractSaver):
     """
-        Save settings into YAML
+        Save settings into YAML string
     """
 
     def __init__(self):
@@ -54,7 +54,7 @@ class YamlSaver(AbstractSaver):
 
 class PickleSaver(AbstractSaver):
     """
-        Save settings into pickle file
+        Save settings into PICKLE file
     """
 
     def __init__(self):
@@ -76,7 +76,7 @@ class AbstractSettings(ABC):
 
     @abstractmethod
     def get_saver(self) -> AbstractSaver:
-        pass
+        raise NotImplementedError("This is a factory method. You should implement this!")
 
     def save_config(self) -> Any:
         saver = self.get_saver()
