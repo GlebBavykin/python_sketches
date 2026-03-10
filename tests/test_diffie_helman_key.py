@@ -1,6 +1,6 @@
 import pytest
 from random import randint
-from diffie_hellman.key_exchange_protocol import CryptoBase, Participant
+from algorithms.key_exchange_protocol import CryptoBase, Participant
 
 
 
