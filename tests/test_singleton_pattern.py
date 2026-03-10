@@ -21,7 +21,8 @@ def singleton_2():
 
 def test_create_two_instances(singleton_1, singleton_2):
     """
-        Create two instances and compare them
+        Create three instances and compare them
     """
-    assert singleton_1.get_data() == singleton_2.get_data()
-    assert singleton_1 is singleton_2
+    singleton_3 = Singleton(data="Singleton instance 3")
+    assert singleton_1.data == singleton_2.data == singleton_3.data
+    assert singleton_1 is singleton_2 is singleton_3

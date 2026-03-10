@@ -14,8 +14,10 @@ class Singleton:
             self.__data = data
             self._initialised = True
 
-    def get_data(self):
+    @property
+    def data(self):
         return self.__data
 
-    def set_data(self, data: Any) -> None:
+    @data.setter
+    def data(self, data: Any) -> None:
         self.__data = data
