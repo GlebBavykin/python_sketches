@@ -3,7 +3,7 @@ from collections import deque
 
 def evaluate_pn(expression: str, reverse=True) -> int:
     """
-    Evaluate reverse polish expression and return result
+    Evaluate polish expressions and return result
     """
     stack = deque()
     tokens = expression.split()

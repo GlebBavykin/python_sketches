@@ -4,6 +4,9 @@ Entry = namedtuple("Entry", ["priority", "data"])
 
 
 class PQ:
+    """
+        Implementation of Heap Priority Queue
+    """
     def __init__(self, queue_size: int):
         self.queue_size: int = queue_size
         self.storage: list[Entry | None] = [None] * (queue_size + 1)

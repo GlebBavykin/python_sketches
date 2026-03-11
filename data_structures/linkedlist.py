@@ -9,6 +9,9 @@ class Node:
 
 
 class DoublyLinkedList:
+    """
+        Implementation of Doubly Linked List
+    """
     def __init__(self):
         self._head = None
         self._tail = None

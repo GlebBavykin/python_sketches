@@ -2,6 +2,9 @@ import collections.abc
 
 
 class HashSet(collections.abc.MutableSet):
+    """
+        Implementation of Hash Set using Python dict
+    """
     def __init__(self, data: dict = None):
         if data is None:
             self.data_store = dict()
