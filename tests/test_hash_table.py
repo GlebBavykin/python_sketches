@@ -8,7 +8,7 @@ def hash_table():
     """
     hash_table instance
     """
-    return HashTable(capacity=1)
+    return HashTable(capacity=100)
 
 
 @pytest.fixture(scope="function")
