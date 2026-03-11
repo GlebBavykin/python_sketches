@@ -8,7 +8,7 @@ def hash_table():
     """
     hash_table instance
     """
-    return HashTable(capacity=100)
+    return HashTable(capacity=1)
 
 
 @pytest.fixture(scope="function")
@@ -48,7 +48,7 @@ def test_pop(hash_table_with_data: HashTable, data: dict):
     Remove elements from hash_table
     """
     for key in data.keys():
-        hash_table_with_data.pop(key)
+        assert hash_table_with_data.pop(key) is not None
 
     for key in data.keys():
         assert hash_table_with_data.get(key) is None

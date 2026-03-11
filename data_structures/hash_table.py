@@ -1,4 +1,5 @@
 from typing import Any
+
 from data_structures.linkedlist import DoublyLinkedList
 
 
@@ -6,6 +7,7 @@ class HashTable:
     """
         Implementation of Hash Table using Separate Chaining
     """
+
     def __init__(self, capacity: int = 256):
         self._size = 0
         self.capacity = capacity
@@ -28,17 +30,17 @@ class HashTable:
             for current_key, value in self._table[self._hash(key)]:
                 if current_key == key:
                     return value
-        except IndexError:
-            return default
-        except TypeError:
+        except (IndexError, TypeError, KeyError):
             return default
 
-    def pop(self, key: str,  default: Any = None) -> None:
+    def pop(self, key: str, default: Any = None) -> None:
         try:
-            value = self._table.pop(self._hash(key))
-            self._size -= 1
-            return value
-        except IndexError:
+            for current_key, value in self._table[self._hash(key)]:
+                if current_key == key:
+                    self._table[self._hash(key)].remove((key, value))
+                    self._size -= 1
+                    return value
+        except (IndexError, TypeError, KeyError):
             return default
 
     def __len__(self):
