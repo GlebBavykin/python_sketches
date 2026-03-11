@@ -12,6 +12,7 @@ dependencies = [
     "black",
     "pytest",
     "PyYAML",
+    "aiohttp"
 ]
 
 [dependency-groups]

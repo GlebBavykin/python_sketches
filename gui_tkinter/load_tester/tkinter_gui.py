@@ -1,7 +1,7 @@
 from queue import Queue
 from tkinter import Tk, Label, Entry, ttk
 from typing import Optional
-from load_scenario import StressTest
+from gui_tkinter.load_tester.load_scenario import StressTest
 
 class LoadGui(Tk):
     def __init__(self, loop, *args, **kwargs):
