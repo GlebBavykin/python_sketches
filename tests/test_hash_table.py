@@ -1,6 +1,6 @@
 import pytest
 
-from data_structures.hash_table import HashTable
+from data_structures.hash_table import DynamicHashTable
 
 
 @pytest.fixture(scope="function")
@@ -8,7 +8,7 @@ def hash_table():
     """
     hash_table instance
     """
-    return HashTable(capacity=100)
+    return DynamicHashTable(capacity=100)
 
 
 @pytest.fixture(scope="function")
@@ -20,7 +20,7 @@ def data():
 
 
 @pytest.fixture(scope="function")
-def hash_table_with_data(hash_table: HashTable, data: dict):
+def hash_table_with_data(hash_table: DynamicHashTable, data: dict):
     """
     hash_table instance
     """
@@ -29,7 +29,7 @@ def hash_table_with_data(hash_table: HashTable, data: dict):
     return hash_table
 
 
-def test_insert_and_get(hash_table: HashTable, data: dict):
+def test_insert_and_get(hash_table: DynamicHashTable, data: dict):
     """
     Add/get elements to/from hash_table
     """
@@ -43,7 +43,7 @@ def test_insert_and_get(hash_table: HashTable, data: dict):
     assert len(hash_table) == len(data)
 
 
-def test_pop(hash_table_with_data: HashTable, data: dict):
+def test_pop(hash_table_with_data: DynamicHashTable, data: dict):
     """
     Remove elements from hash_table
     """
@@ -56,7 +56,7 @@ def test_pop(hash_table_with_data: HashTable, data: dict):
     assert hash_table_with_data.get('unknown_key') is None
 
 
-def test_contains(hash_table_with_data: HashTable, data: dict):
+def test_contains(hash_table_with_data: DynamicHashTable, data: dict):
     """
     Check whether hash_table contains an element from data_dict
     """
@@ -64,3 +64,18 @@ def test_contains(hash_table_with_data: HashTable, data: dict):
         assert key in hash_table_with_data
 
     assert 'unknown_key' not in hash_table_with_data
+
+
+def test_resize():
+    """
+    Check resize of hash_table
+    """
+    hash_table = DynamicHashTable(capacity=5)
+    for index in range(100):
+        hash_table.insert(f"key_{index}", index)
+
+    for index in range(100):
+        assert hash_table.get(f"key_{index}") is not None
+    assert 'unknown_key' not in hash_table
+    assert len(hash_table) == 100
+    assert hash_table.capacity > 150

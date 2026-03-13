@@ -3,18 +3,32 @@ from typing import Any
 from data_structures.linkedlist import DoublyLinkedList
 
 
-class HashTable:
+class DynamicHashTable:
     """
         Implementation of Hash Table using Separate Chaining
     """
 
     def __init__(self, capacity: int = 256):
-        self._size = 0
-        self.capacity = capacity
+        if capacity < 1:
+            raise ValueError("Capacity must be > 0")
+        else:
+            self._capacity = capacity
         self._table: list = [None] * capacity
+        self._size = 0
+        self._load_factor = 0.75
+        self._threshold = self._capacity * self._load_factor
 
     def _hash(self, key: str) -> int:
-        return hash(key) % self.capacity
+        return hash(key) % self._capacity
+
+    def _resize(self, new_size: int) -> None:
+        temp = DynamicHashTable(new_size)
+        for buket in self._table:
+            if buket is not None:
+                for key, value in buket:
+                    temp.insert(key, value)
+        self._table, self._capacity = temp._table, temp._capacity
+        self._threshold = self._load_factor * temp._capacity
 
     def insert(self, key: str, value: int) -> None:
         index: int = self._hash(key)
@@ -24,6 +38,9 @@ class HashTable:
         else:
             self._table[index].append((key, value))
         self._size += 1
+
+        if self._size >= self._threshold:
+            self._resize(2 * self._capacity + 1)
 
     def get(self, key: str, default: Any = None) -> Any:
         try:
@@ -42,6 +59,10 @@ class HashTable:
                     return value
         except (IndexError, TypeError, KeyError):
             return default
+
+    @property
+    def capacity(self):
+        return self._capacity
 
     def __len__(self):
         return self._size
