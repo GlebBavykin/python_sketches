@@ -79,3 +79,21 @@ def test_resize():
     assert 'unknown_key' not in hash_table
     assert len(hash_table) == 100
     assert hash_table.capacity > 150
+
+
+def test_iter(hash_table_with_data: DynamicHashTable, data: dict):
+    """
+    Check iteration through hash_table
+    """
+    for key, value in hash_table_with_data:
+        assert data.get(key) == value
+
+
+def test_insert_same_keys(hash_table_with_data: DynamicHashTable, data: dict):
+    """
+    Check insertion of same keys in hash_table
+    """
+    hash_table = DynamicHashTable(capacity=5)
+    for index in range(100):
+        hash_table.insert('a', 1)
+    assert len(hash_table) == 1

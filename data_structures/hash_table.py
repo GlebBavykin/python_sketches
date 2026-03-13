@@ -10,13 +10,32 @@ class DynamicHashTable:
 
     def __init__(self, capacity: int = 256):
         if capacity < 1:
-            raise ValueError("Capacity must be > 0")
+            raise ValueError("Capacity must be > 1")
         else:
             self._capacity = capacity
         self._table: list = [None] * capacity
         self._size = 0
         self._load_factor = 0.75
         self._threshold = self._capacity * self._load_factor
+
+    def __len__(self):
+        return self._size
+
+    def __contains__(self, key):
+        if self.get(key) is None:
+            return False
+        else:
+            return True
+
+    def __iter__(self):
+        for buket in self._table:
+            if buket is not None:
+                for key, value in buket:
+                    yield key, value
+
+    @property
+    def capacity(self):
+        return self._capacity
 
     def _hash(self, key: str) -> int:
         return hash(key) % self._capacity
@@ -35,9 +54,15 @@ class DynamicHashTable:
         if self._table[index] is None:
             linked_list = DoublyLinkedList()
             self._table[index] = linked_list.append((key, value))
+            self._size += 1
         else:
-            self._table[index].append((key, value))
-        self._size += 1
+            for item in self._table[index]:
+                if key == key:
+                    node = self._table[index].find(item)
+                    node.value = value
+                else:
+                    self._table[index].append((key, value))
+                    self._size += 1
 
         if self._size >= self._threshold:
             self._resize(2 * self._capacity + 1)
@@ -59,16 +84,3 @@ class DynamicHashTable:
                     return value
         except (IndexError, TypeError, KeyError):
             return default
-
-    @property
-    def capacity(self):
-        return self._capacity
-
-    def __len__(self):
-        return self._size
-
-    def __contains__(self, key):
-        if self.get(key) is None:
-            return False
-        else:
-            return True
