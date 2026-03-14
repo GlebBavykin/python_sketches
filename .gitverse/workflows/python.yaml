@@ -1,7 +1,7 @@
 name: Python CI
 
 on:
-  workflow_dispatch:
+  [push, fork, workflow_dispatch]:
 
 jobs:
   test:
