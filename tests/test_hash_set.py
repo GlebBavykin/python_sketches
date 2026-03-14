@@ -11,8 +11,11 @@ def hash_set():
     return HashSet()
 
 
-@pytest.mark.parametrize("data", [[1, 2, 3, 4, "a", "b", "c"], [1, 1, 2, 2, "a", "a", "b"]],
-                         ids=["unique", "redundant"])
+@pytest.mark.parametrize(
+    "data",
+    [[1, 2, 3, 4, "a", "b", "c"], [1, 1, 2, 2, "a", "a", "b"]],
+    ids=["unique", "redundant"],
+)
 def test_add_and_traverse(hash_set, data):
     """
     Add elements to has_set and traverse
@@ -24,8 +27,11 @@ def test_add_and_traverse(hash_set, data):
         assert value in hash_set
 
 
-@pytest.mark.parametrize("data", [[1, 2, 3, 4, "a", "b", "c"], [1, 1, 2, 2, "a", "a", "b"]],
-                         ids=["unique", "redundant"])
+@pytest.mark.parametrize(
+    "data",
+    [[1, 2, 3, 4, "a", "b", "c"], [1, 1, 2, 2, "a", "a", "b"]],
+    ids=["unique", "redundant"],
+)
 def test_discard_and_traverse(hash_set, data):
     """
     Discard elements from has_set and traverse

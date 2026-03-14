@@ -2,27 +2,28 @@ from typing import Any
 
 
 class Node:
-    def __init__(self, item: Any):
+    def __init__(self, data: Any):
         self.next = None
         self.previous = None
-        self.item = item
+        self.data = data
 
 
 class DoublyLinkedList:
     """
-        Implementation of Doubly Linked List
+    Implementation of Doubly Linked List
     """
+
     def __init__(self):
         self._head = None
         self._tail = None
         self._length = 0
         self._iter_position = 0
 
-    def append(self, item: Any):
+    def append(self, data: Any):
         """
-        Adds an item to the right end
+        Add data to the right end
         """
-        new_node = Node(item)
+        new_node = Node(data)
         if self._head is None:
             self._head = new_node
         else:
@@ -32,11 +33,11 @@ class DoublyLinkedList:
         self._length += 1
         return self
 
-    def append_left(self, item: Any):
+    def append_left(self, data: Any):
         """
-        Adds an item to the left end
+        Add data to the left end
         """
-        new_node = Node(item)
+        new_node = Node(data)
         if self._head is None:
             self._head = new_node
             self._head.next = None
@@ -49,25 +50,25 @@ class DoublyLinkedList:
 
     def pop(self):
         """
-        Removes and returns an item from the right end
+        Remove and return data from the right
         """
         try:
-            item = self._tail.item
+            data = self._tail.data
             self.delete_node(self._tail)
         except AttributeError:
             raise ValueError("List is empty")
-        return item
+        return data
 
     def pop_left(self):
         """
-        Removes and returns an item from the left end
+        Removes and returns  data from the left end
         """
         try:
-            item = self._head.item
+            data = self._head.data
             self.delete_node(self._head)
         except AttributeError:
             raise ValueError("List is empty")
-        return item
+        return data
 
     def delete_node(self, node: Node):
         """
@@ -91,7 +92,7 @@ class DoublyLinkedList:
             del node
         self._length -= 1
 
-    def find(self, item: Any):
+    def find(self, data: Any):
         """
         Find the first occurrence of a specific value and return node
         """
@@ -99,20 +100,19 @@ class DoublyLinkedList:
             raise ValueError("List is empty")
         current_node = self._head
         while current_node.next:
-            if current_node.item == item:
+            if current_node.data == data:
                 break
             current_node = current_node.next
         if current_node is self._tail and current_node is not self._head:
-            raise ValueError("Item not found")
+            raise ValueError("data not found")
         return current_node
 
-    def remove(self, item: Any):
+    def remove(self, data: Any):
         """
-        Removes the first occurrence of item
+        Removes the first occurrence of data
         """
-        found_node = self.find(item)
+        found_node = self.find(data)
         self.delete_node(found_node)
-        return self
 
     def count(self):
         """
@@ -146,4 +146,4 @@ class DoublyLinkedList:
             for _ in range(self._iter_position):
                 current_node = current_node.next
             self._iter_position += 1
-            return current_node.item
+            return current_node.data

@@ -5,7 +5,7 @@ from data_structures.hash_table import DynamicHashTable
 
 class HashSet(collections.abc.MutableSet):
     """
-        Implementation of Hash Set using Python dict
+    Implementation of Hash Set using Python dict
     """
 
     def __init__(self):

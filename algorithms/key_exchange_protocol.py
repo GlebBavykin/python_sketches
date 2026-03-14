@@ -7,17 +7,16 @@ class CryptoBase:
         self.public_modulus = public_modulus
 
     def __repr__(self):
-        return (
-            f"""
+        return f"""
 Diffie–Hellman key exchange protocol
 __________________________________________________
 Public Base:    {self.public_base}
 Public Modulus: {self.public_modulus}
-__________________________________________________""")
+__________________________________________________"""
 
 
 class Participant:
-    def __init__(self, name,crypto_base):
+    def __init__(self, name, crypto_base):
         self.name = name
         self.crypto_base = crypto_base
         self.private_key = randint(a=99, b=100000)
@@ -26,12 +25,16 @@ class Participant:
         self.make_public_key()
 
     def make_public_key(self):
-        self.public_key = pow(self.crypto_base.public_base, self.private_key) % self.crypto_base.public_modulus
+        self.public_key = (
+            pow(self.crypto_base.public_base, self.private_key)
+            % self.crypto_base.public_modulus
+        )
         return self.public_key
 
-
     def make_key_hash(self, friend):
-        self.shared_key = pow(friend.public_key, self.private_key) % self.crypto_base.public_modulus
+        self.shared_key = (
+            pow(friend.public_key, self.private_key) % self.crypto_base.public_modulus
+        )
 
     def __rshift__(self, other):
         self.make_key_hash(other)
@@ -41,11 +44,10 @@ class Participant:
         other.make_key_hash(self)
 
     def __repr__(self):
-        return (
-            f"""
+        return f"""
 {self.name}
 __________________________________________________
 Private Key: {self.private_key}
 Public Key:  {self.public_key}
 Shared Key:  {self.shared_key}
-__________________________________________________""")
+__________________________________________________"""

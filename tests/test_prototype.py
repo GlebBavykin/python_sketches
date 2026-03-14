@@ -6,7 +6,7 @@ from design_pattern.creational.prototype import Course, Teacher, Student, Regist
 @pytest.fixture(scope="class")
 def teacher() -> Teacher:
     """
-        Teacher instance
+    Teacher instance
     """
     return Teacher("Ryan Gosling ", 33, Course.Python)
 
@@ -14,7 +14,7 @@ def teacher() -> Teacher:
 @pytest.fixture(scope="class")
 def student(teacher) -> Student:
     """
-        Student instance
+    Student instance
     """
     return Student("Omar Wood", 25, teacher)
 
@@ -22,7 +22,7 @@ def student(teacher) -> Student:
 @pytest.fixture(scope="class")
 def registry(teacher, student) -> Registry:
     """
-        Registry instance
+    Registry instance
     """
     registry_instance = Registry()
     registry_instance.add_person("teacher", teacher)
@@ -32,7 +32,7 @@ def registry(teacher, student) -> Registry:
 
 def test_prototype_1(registry, teacher):
     """
-        Get teacher copy from registry
+    Get teacher copy from registry
     """
     cloned_teacher = registry.get_person("teacher")
     assert teacher is not cloned_teacher
@@ -43,7 +43,7 @@ def test_prototype_1(registry, teacher):
 
 def test_prototype_2(registry, student, teacher):
     """
-        Get a student copy from registry
+    Get a student copy from registry
     """
     cloned_student = registry.get_person("student")
     assert student is not cloned_student
@@ -55,13 +55,13 @@ def test_prototype_2(registry, student, teacher):
 @pytest.mark.parametrize("name, age", [("Mina Middleton", 20)])
 def test_prototype_3(registry, student, teacher, name, age):
     """
-        Add a new student to registry
+    Add a new student to registry
     """
     new_student = registry.get_person("student")
     new_student.name = name
     new_student.age = age
     new_student.teacher = teacher
-    registry.add_person('new_student', new_student)
+    registry.add_person("new_student", new_student)
     cloned_new_student = registry.get_person("new_student")
     assert cloned_new_student.name == name
     assert cloned_new_student.age == age
@@ -71,13 +71,13 @@ def test_prototype_3(registry, student, teacher, name, age):
 @pytest.mark.parametrize("name, age", [("Kobe Chapman", 45)])
 def test_prototype_4(registry, student, teacher, name, age):
     """
-        Add a new teacher to registry
+    Add a new teacher to registry
     """
     new_teacher = registry.get_person("teacher")
     new_teacher.name = name
     new_teacher.age = age
     new_teacher.course = Course.Java
-    registry.add_person('new_teacher', new_teacher)
+    registry.add_person("new_teacher", new_teacher)
     cloned_new_teacher = registry.get_person("new_teacher")
     assert cloned_new_teacher.name == name
     assert cloned_new_teacher.age == age
@@ -86,7 +86,7 @@ def test_prototype_4(registry, student, teacher, name, age):
 
 def test_prototype_5(registry):
     """
-        Get unknown item from registry
+    Get unknown item from registry
     """
     with pytest.raises(ValueError):
         registry.get_person("unknown")

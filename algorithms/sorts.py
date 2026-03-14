@@ -3,7 +3,7 @@ from typing import List, Optional
 
 def bubblesort(array: List) -> List:
     """
-         Bubble Sorti List
+    Bubble Sorti List
     """
 
     for row, _ in enumerate(array):
@@ -12,7 +12,6 @@ def bubblesort(array: List) -> List:
 
         # Сортировать только те, что ещё не упорядочены
         for target in range(last_element):
-
             # Если текущий элемент больше следующего, то поменять их местами
             if array[target] > array[target + 1]:
                 array[target], array[target + 1] = array[target + 1], array[target]
@@ -21,17 +20,15 @@ def bubblesort(array: List) -> List:
 
 def selection_sort(array: List) -> List:
     """
-        Selection Sort List
+    Selection Sort List
     """
 
     for i in range(len(array)):
-
         # Положим, что текущий элемент наименьший
         min_idx = i
 
         # Сравнить все элементы массива с текущим
         for j in range(i + 1, len(array)):
-
             # Если найдётся меньше, то он является наименьшим
             if array[min_idx] > array[j]:
                 min_idx = j
@@ -43,11 +40,10 @@ def selection_sort(array: List) -> List:
 
 def insertion_sort(array: List) -> List:
     """
-        Insertion Sort List
+    Insertion Sort List
     """
 
     for i in range(1, len(array)):
-
         # Берём текущее значение
         current = array[i]
 
@@ -64,7 +60,7 @@ def insertion_sort(array: List) -> List:
 
 def quick_sort(array: List, low: int = 0, high: Optional[int] = None) -> List:
     """
-        Quick Sort List
+    Quick Sort List
     """
 
     def partition(array: List, low: int, high: int) -> int:
@@ -72,10 +68,9 @@ def quick_sort(array: List, low: int = 0, high: Optional[int] = None) -> List:
         pivot = array[high]
 
         # Минимальный элемент находится перед первым элементом
-        i = (low - 1)
+        i = low - 1
 
         for j in range(low, high):
-
             # Выбрать только те, что меньше точки поворота
             if array[j] < pivot:
                 # Теперь минимальный элемент на следующем месте
@@ -104,9 +99,11 @@ def quick_sort(array: List, low: int = 0, high: Optional[int] = None) -> List:
     return array
 
 
-def merge_sort(array: List, left_index: Optional[int] = None, right_index: Optional[int] = None) -> List:
+def merge_sort(
+    array: List, left_index: Optional[int] = None, right_index: Optional[int] = None
+) -> List:
     """
-        Merge Sort List
+    Merge Sort List
     """
 
     if left_index is None:
@@ -136,12 +133,12 @@ def merge_sort(array: List, left_index: Optional[int] = None, right_index: Optio
 
 def merge(array: List, left_index: int, right_index: int, middle: int) -> None:
     """
-        Слить массива по возрастанию элементов
+    Слить массива по возрастанию элементов
     """
 
     # Создать левую и правую копию массивов
-    left_copy = array[left_index: middle + 1]
-    right_copy = array[middle + 1: right_index + 1]
+    left_copy = array[left_index : middle + 1]
+    right_copy = array[middle + 1 : right_index + 1]
 
     # Инициализация индексов
     left_copy_index = 0
@@ -150,7 +147,6 @@ def merge(array: List, left_index: int, right_index: int, middle: int) -> None:
 
     # Пройти по двум копиям массивов
     while left_copy_index < len(left_copy) and right_copy_index < len(right_copy):
-
         # Если элемент слева меньше правого, то поместить его в отсортированный массив
         if left_copy[left_copy_index] <= right_copy[right_copy_index]:
             array[sorted_index] = left_copy[left_copy_index]

@@ -3,7 +3,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus):
     reports = []
     for replist in terminalreporter.stats.values():
         for rep in replist:
-            if hasattr(rep, 'duration'):
+            if hasattr(rep, "duration"):
                 reports.append(rep)
 
     if not reports:
@@ -16,7 +16,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus):
     terminalreporter.write_sep("=", "test durations")
     for rep in reports:
         # Focus only on the call stage
-        if rep.when != 'call':
+        if rep.when != "call":
             continue
 
         nodeid = rep.nodeid.replace("::()::", "::")

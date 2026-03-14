@@ -3,18 +3,18 @@ from random import randint
 from algorithms.key_exchange_protocol import CryptoBase, Participant
 
 
-
 @pytest.fixture(scope="function")
 def encryption_base():
     """
-        Base of encryption and decryption
+    Base of encryption and decryption
     """
-    return CryptoBase(randint(2,23), randint(101, 999))
+    return CryptoBase(randint(2, 23), randint(101, 999))
+
 
 @pytest.fixture(scope="function")
 def Alice(encryption_base):
     """
-        Alice exchange participant
+    Alice exchange participant
     """
     return Participant("Alice", encryption_base)
 
@@ -22,7 +22,7 @@ def Alice(encryption_base):
 @pytest.fixture(scope="function")
 def Bob(encryption_base):
     """
-        Bob exchange participant
+    Bob exchange participant
     """
     return Participant("Bob", encryption_base)
 

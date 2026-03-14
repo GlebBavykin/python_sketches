@@ -53,7 +53,7 @@ def test_pop(hash_table_with_data: DynamicHashTable, data: dict):
     for key in data.keys():
         assert hash_table_with_data.get(key) is None
 
-    assert hash_table_with_data.get('unknown_key') is None
+    assert hash_table_with_data.get("unknown_key") is None
 
 
 def test_contains(hash_table_with_data: DynamicHashTable, data: dict):
@@ -63,20 +63,44 @@ def test_contains(hash_table_with_data: DynamicHashTable, data: dict):
     for key in data.keys():
         assert key in hash_table_with_data
 
-    assert 'unknown_key' not in hash_table_with_data
+    assert "unknown_key" not in hash_table_with_data
+
+
+@pytest.mark.parametrize(
+    "capacity, exception",
+    [(-1, ValueError), (0, ValueError), (1, ValueError), (2, ValueError)],
+)
+def test_boundaries_1(capacity, exception):
+    """
+    Check boundaries of capacity
+    """
+    with pytest.raises(exception):
+        DynamicHashTable(capacity)
+
+
+@pytest.mark.parametrize("capacity", [3])
+def test_boundaries_2(capacity):
+    """
+    Check exceed the capacity
+    """
+    hash_table = DynamicHashTable(capacity=3, resizeable=False)
+    for index in range(capacity + 6):
+        hash_table.insert(f"key_{index}", index)
+    assert len(hash_table) == capacity + 6
+    assert hash_table.capacity == capacity
 
 
 def test_resize():
     """
     Check resize of hash_table
     """
-    hash_table = DynamicHashTable(capacity=5)
+    hash_table = DynamicHashTable(capacity=3)
     for index in range(100):
         hash_table.insert(f"key_{index}", index)
 
     for index in range(100):
         assert hash_table.get(f"key_{index}") is not None
-    assert 'unknown_key' not in hash_table
+    assert "unknown_key" not in hash_table
     assert len(hash_table) == 100
     assert hash_table.capacity > 150
 
@@ -89,11 +113,27 @@ def test_iter(hash_table_with_data: DynamicHashTable, data: dict):
         assert data.get(key) == value
 
 
-def test_insert_same_keys(hash_table_with_data: DynamicHashTable, data: dict):
+def test_update_value():
+    """
+    Check update value of the same key
+    """
+    hash_table = DynamicHashTable(capacity=5)
+    hash_table.insert("a", 1)
+    hash_table.insert("a", 2)
+    assert hash_table.get("a") == 2
+
+
+def test_insert_same_keys():
     """
     Check insertion of same keys in hash_table
     """
+
     hash_table = DynamicHashTable(capacity=5)
     for index in range(100):
-        hash_table.insert('a', 1)
-    assert len(hash_table) == 1
+        hash_table.insert("a", index)
+
+    iteration = 0
+    for iteration, item in enumerate(hash_table, start=1):
+        pass
+    assert len(hash_table) == 1 == iteration
+    assert hash_table.get("a")
