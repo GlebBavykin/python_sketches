@@ -1,6 +1,17 @@
-from typing import Any
+from dataclasses import dataclass
+from typing import Any, Optional
 
-from data_structures.linkedlist import DoublyLinkedList
+from data_structures.linkedlist import DoublyLinkedList as LinkedList
+
+
+@dataclass
+class Entry:
+    """
+    Key-Value pair for Separate Chaining in DynamicHashTable
+    """
+
+    key: str
+    value: Any
 
 
 class DynamicHashTable:
@@ -14,7 +25,7 @@ class DynamicHashTable:
         else:
             self._capacity = capacity
         self._resizeable = resizeable
-        self._table: list = [None] * capacity
+        self._table: list[Optional[LinkedList]] = [None] * capacity
         self._size = 0
         self._load_factor = 0.75
         self._threshold = self._capacity * self._load_factor
@@ -22,7 +33,7 @@ class DynamicHashTable:
     def __len__(self):
         return self._size
 
-    def __contains__(self, key):
+    def __contains__(self, key: str):
         if self.get(key) is None:
             return False
         else:
@@ -31,8 +42,8 @@ class DynamicHashTable:
     def __iter__(self):
         for buket in self._table:
             if buket is not None:
-                for key, value in buket:
-                    yield key, value
+                for entry in buket:
+                    yield entry.key, entry.value
 
     @property
     def capacity(self):
@@ -45,8 +56,8 @@ class DynamicHashTable:
         temp = DynamicHashTable(new_size)
         for buket in self._table:
             if buket is not None:
-                for key, value in buket:
-                    temp.insert(key, value)
+                for entry in buket:
+                    temp.insert(entry.key, entry.value)
         self._table, self._capacity = temp._table, temp._capacity
         self._threshold = self._load_factor * temp._capacity
 
@@ -58,38 +69,37 @@ class DynamicHashTable:
         index: int = self._hash(key)
         # если ячейка пустая, то добавить в неё список
         if self._table[index] is None:
-            self._table[index] = DoublyLinkedList().append((key, value))
+            self._table[index] = LinkedList().append(Entry(key, value))
             self._size += 1
         # если ячейка не пустая
         else:
             # пройти по элементам связного списка
-            for current_key, current_value in self._table[index]:
+            for entry in self._table[index]:
                 # если в списке уже есть элемент с ключом key, то обновить его значение
-                if key == current_key and current_value != value:
-                    node = self._table[index].find((current_key, current_value))
-                    node.data = (key, value)
-                    break
-                elif current_key == key and current_value == value:
-                    pass
-                else:
-                    self._table[index].append((key, value))
+                if entry.key == key and entry.value != value:
+                    node = self._table[index].find(entry)
+                    node.data.value = value
+                    return
+                # если в списке нет такого ключа, то добавить новый элемент в конце списка
+                elif entry.key != key and entry.value != value:
+                    self._table[index].append(Entry(key, value))
                     self._size += 1
-                    break
+                    return
 
     def get(self, key: str, default: Any = None) -> Any:
         try:
-            for current_key, value in self._table[self._hash(key)]:
-                if current_key == key:
-                    return value
+            for entry in self._table[self._hash(key)]:
+                if entry.key == key:
+                    return entry.value
         except IndexError, TypeError, KeyError:
             return default
 
     def pop(self, key: str, default: Any = None) -> None:
         try:
-            for current_key, value in self._table[self._hash(key)]:
-                if current_key == key:
-                    self._table[self._hash(key)].remove((key, value))
+            for entry in self._table[self._hash(key)]:
+                if entry.key == key:
+                    self._table[self._hash(key)].remove(entry)
                     self._size -= 1
-                    return value
+                    return entry.value
         except IndexError, TypeError, KeyError:
             return default
