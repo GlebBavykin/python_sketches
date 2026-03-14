@@ -132,8 +132,8 @@ def test_insert_same_keys():
     for index in range(100):
         hash_table.insert("a", index)
 
-    iteration = 0
-    for iteration, item in enumerate(hash_table, start=1):
+    iterations = 0
+    for iterations, item in enumerate(hash_table, start=1):
         pass
-    assert len(hash_table) == 1 == iteration
+    assert len(hash_table) == 1 == iterations
     assert hash_table.get("a")
