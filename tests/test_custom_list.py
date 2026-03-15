@@ -16,7 +16,7 @@ def values():
     """
     Test values list
     """
-    return [0, 1, 2, 3, 4, 5]
+    return [1, 15, 3, 2, 9, 100, 0, -1]
 
 
 @pytest.fixture(scope="function")
@@ -110,3 +110,10 @@ def test_clear(custom_list_with_values, values):
     assert len(custom_list_with_values) == 0
     with pytest.raises(ValueError):
         custom_list_with_values.pop()
+
+
+def test_sort(custom_list_with_values, values):
+    """
+    Sort custom list with values
+    """
+    assert sorted(custom_list_with_values) == sorted(values)

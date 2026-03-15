@@ -43,6 +43,14 @@ class CustomList:
     def __len__(self):
         return self._size
 
+    def __eq__(self, other):
+        for self_value, other_value in zip(self._array, other):
+            try:
+                assert self_value == other_value
+            except AssertionError:
+                return False
+        return True
+
     def __str__(self):
         result = ""
         for index in range(self._size):
