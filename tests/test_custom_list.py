@@ -117,3 +117,13 @@ def test_sort(custom_list_with_values, values):
     Sort custom list with values
     """
     assert sorted(custom_list_with_values) == sorted(values)
+
+
+def test_init():
+    """
+    Init list with multiple values
+    """
+    my_list = CustomList(None) * 5
+    assert len(my_list) == 5
+    for value in my_list:
+        assert value is None

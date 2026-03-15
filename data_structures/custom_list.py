@@ -6,11 +6,14 @@ class CustomList:
     Implementation of List using PyObject
     """
 
-    def __init__(self):
+    def __init__(self, *args):
         self._capacity = 1
         self._size = 0
         self._array = self._make_array(self._capacity)
         self._iter_position = 0
+        self._args = args
+        for value in self._args:
+            self.append(value)
 
     def __getitem__(self, index):
         if 0 <= index <= self._capacity:
@@ -50,6 +53,14 @@ class CustomList:
             except AssertionError:
                 return False
         return True
+
+    def __mul__(self, other):
+        if isinstance(other, int):
+            for _ in range(1, other):
+                self.append(*self._args)
+            return self
+        else:
+            raise TypeError
 
     def __str__(self):
         result = ""

@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import Any, Optional
 
+from data_structures.custom_list import CustomList
 from data_structures.linkedlist import DoublyLinkedList as LinkedList
 
 
@@ -25,7 +26,7 @@ class DynamicHashTable:
         else:
             self._capacity = capacity
         self._resizeable = resizeable
-        self._table: list[Optional[LinkedList]] = [None] * capacity
+        self._table: CustomList[Optional[LinkedList]] = CustomList(None) * capacity
         self._size = 0
         self._load_factor = 0.75
         self._threshold = self._capacity * self._load_factor
