@@ -1,6 +1,6 @@
 import pytest
 
-from design_pattern.creational.prototype import Course, Teacher, Student, Registry
+from design_patterns.creational.prototype import Course, Teacher, Student, Registry
 
 
 @pytest.fixture(scope="class")

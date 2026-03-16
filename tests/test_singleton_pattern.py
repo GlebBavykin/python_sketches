@@ -1,6 +1,6 @@
 import pytest
 
-from design_pattern.creational.singleton import Singleton
+from design_patterns.creational.singleton import Singleton
 
 
 @pytest.fixture(scope="class")

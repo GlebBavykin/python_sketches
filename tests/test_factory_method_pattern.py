@@ -4,7 +4,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-from design_pattern.creational.factory_method_pattern import (
+from design_patterns.creational.factory_method_pattern import (
     JsonSettings,
     YamlSettings,
     PickleSettings,
