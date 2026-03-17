@@ -63,14 +63,14 @@ class PQ:
             if self._resizeable:
                 self._resize(self._capacity * 2)
             else:
-                raise IndexError("PriorityQueue is Full")
+                raise IndexError("Priority Queue is Full")
         self._size += 1
         self._storage[self._size] = Entry(priority, data)
         self._swim(self._size)
 
     def pop(self) -> Tuple[int, Any]:
         if self._size == 0:
-            raise IndexError("PriorityQueue is Empty")
+            raise IndexError("Priority Queue is Empty")
         element = self._storage[1]
         self._storage[1], self._storage[self._size] = self._storage[self._size], None
         self._size -= 1
@@ -84,22 +84,21 @@ class PQ:
                 child_index += 1
             if not self._storage[parent_index] < self._storage[child_index]:
                 break
-            self._storage[child_index], self._storage[parent_index] = (
-                self._storage[parent_index],
-                self._storage[child_index],
-            )
+            self._swap_parent_and_child(parent_index, child_index)
             parent_index = child_index
 
     def _swim(self, child_index: int):
-        while child_index > 1 and self._storage[child_index // 2] < self._storage[child_index]:
-            self._storage[child_index // 2], self._storage[child_index] = (
-                self._storage[child_index],
-                self._storage[child_index // 2],
-            )
-            child_index = child_index // 2
+        parent_index = child_index // 2
+        while child_index > 1 and self._storage[parent_index] < self._storage[child_index]:
+            parent_index = child_index // 2
+            self._swap_parent_and_child(parent_index, child_index)
+            child_index = parent_index
 
-    def _resize(self, new_size: int) -> None:
-        temp = PQ(capacity=new_size, resizeable=self._resizeable)
+    def _swap_elements(self, p_index: int, c_index: int):
+        self._storage[p_index], self._storage[c_index] = self._storage[c_index], self._storage[p_index]
+
+    def _resize(self, new_capacity: int) -> None:
+        temp = PQ(capacity=new_capacity, resizeable=self._resizeable)
         for entry in self._storage:
             if entry is not None:
                 temp.put(entry.priority, entry.data)
