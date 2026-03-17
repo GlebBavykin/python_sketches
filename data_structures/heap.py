@@ -38,14 +38,32 @@ class PQ:
     Implementation of Heap Priority Queue
     """
 
-    def __init__(self, capacity: int) -> None:
-        self._capacity: int = capacity
-        self._storage: CustomList[Optional[Entry]] = CustomList(None) * capacity
+    def __init__(self, capacity: int = 5, resizeable: bool = True) -> None:
+        if capacity <= 2:
+            raise ValueError("Capacity must be > 2")
+        else:
+            self._capacity = capacity
+        self._storage: CustomList[Optional[Entry]] = CustomList(None) * (capacity + 1)
         self._size = 0
+        self._resizeable = resizeable
+
+    def __len__(self):
+        return self._size
+
+    @property
+    def resizeable(self):
+        return self._resizeable
+
+    @resizeable.setter
+    def resizeable(self, value: bool):
+        self._resizeable = value
 
     def put(self, priority: int, data: Any) -> None:
         if self._size == self._capacity:
-            raise IndexError("PriorityQueue is Full")
+            if self._resizeable:
+                self._resize(self._capacity * 2)
+            else:
+                raise IndexError("PriorityQueue is Full")
         self._size += 1
         self._storage[self._size] = Entry(priority, data)
         self._swim(self._size)
@@ -79,3 +97,10 @@ class PQ:
                 self._storage[child_index // 2],
             )
             child_index = child_index // 2
+
+    def _resize(self, new_size: int) -> None:
+        temp = PQ(capacity=new_size, resizeable=self._resizeable)
+        for entry in self._storage:
+            if entry is not None:
+                temp.put(entry.priority, entry.data)
+        self._size, self._capacity, self._storage = temp._size, temp._capacity, temp._storage

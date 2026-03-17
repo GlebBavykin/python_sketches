@@ -8,7 +8,7 @@ def priority_queue():
     """
     priority_queue instance
     """
-    return PQ(capacity=6)
+    return PQ(capacity=3)
 
 
 @pytest.fixture(scope="function")
@@ -32,6 +32,7 @@ def test_append_elements_to_queue(priority_queue, data_list):
     """
     for item in data_list:
         priority_queue.put(*item)
+    assert len(priority_queue) == len(data_list)
     for item in sorted(data_list, reverse=True):
         assert priority_queue.pop() == item
 
@@ -40,14 +41,16 @@ def test_pop_from_empty_queue(priority_queue):
     """
     pop element from an empty priority_queue
     """
+    assert len(priority_queue) == 0
     with pytest.raises(IndexError):
         priority_queue.pop()
 
 
-def test_exceed_queue_capacity(priority_queue, data_list):
+def test_not_exceed_queue_capacity(priority_queue, data_list):
     """
     Add too many elements to priority_queue
     """
+    priority_queue.resizeable = False
     data_list.append((150, "Kaleb"))
     with pytest.raises(IndexError):
         for item in data_list:
