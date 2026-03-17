@@ -94,7 +94,7 @@ class PQ:
             self._swap_parent_and_child(parent_index, child_index)
             child_index = parent_index
 
-    def _swap_elements(self, p_index: int, c_index: int):
+    def _swap_parent_and_child(self, p_index: int, c_index: int):
         self._storage[p_index], self._storage[c_index] = self._storage[c_index], self._storage[p_index]
 
     def _resize(self, new_capacity: int) -> None:
