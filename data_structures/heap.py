@@ -1,6 +1,16 @@
-from collections import namedtuple
+from dataclasses import dataclass
+from data_structures.custom_list import CustomList
+from typing import Optional, Any, Tuple
 
-Entry = namedtuple("Entry", ["priority", "data"])
+
+@dataclass
+class Entry:
+    """
+    Element in a queue
+    """
+
+    priority: int
+    data: str
 
 
 class PQ:
@@ -8,53 +18,44 @@ class PQ:
     Implementation of Heap Priority Queue
     """
 
-    def __init__(self, queue_size: int):
-        self.queue_size: int = queue_size
-        self.storage: list[Entry | None] = [None] * (queue_size + 1)
-        self.number_of_items = 0
+    def __init__(self, capacity: int) -> None:
+        self._capacity: int = capacity
+        self._storage: CustomList[Optional[Entry]] = CustomList(None) * capacity
+        self._size = 0
 
-    def put(self, priority: int, data: str):
-        if self.number_of_items == self.queue_size:
-            raise RuntimeError("PriorityQueue is Full")
-        self.number_of_items += 1
-        self.storage[self.number_of_items] = Entry(priority, data)
-        self.swim(self.number_of_items)
+    def put(self, priority: int, data: Any) -> None:
+        if self._size == self._capacity:
+            raise IndexError("PriorityQueue is Full")
+        self._size += 1
+        self._storage[self._size] = Entry(priority, data)
+        self._swim(self._size)
 
-    def pop(self):
-        if self.number_of_items == 0:
-            raise RuntimeError("PriorityQueue is Empty")
-        max_priority_entry = self.storage[1]
-        self.storage[1] = self.storage[self.number_of_items]
-        self.storage[self.number_of_items] = None
-        self.number_of_items -= 1
-        self.sink(1)
-        return tuple(max_priority_entry)
+    def pop(self) -> Tuple[int, Any]:
+        if self._size == 0:
+            raise IndexError("PriorityQueue is Empty")
+        element = self._storage[1]
+        self._storage[1], self._storage[self._size] = self._storage[self._size], None
+        self._size -= 1
+        self._sink(1)
+        return element.priority, element.data
 
-    def sink(self, parent_index: int):
-        while 2 * parent_index <= self.number_of_items:
+    def _sink(self, parent_index: int):
+        while 2 * parent_index <= self._size:
             child_index = 2 * parent_index
-            if (
-                child_index < self.number_of_items
-                and self.left_priority_less_than_right(child_index, child_index + 1)
-            ):
+            if child_index < self._size and self._left_less_right(child_index, child_index + 1):
                 child_index += 1
-            if not self.left_priority_less_than_right(parent_index, child_index):
+            if not self._left_less_right(parent_index, child_index):
                 break
-            self.swap_by_index(child_index, parent_index)
+            self._swap(child_index, parent_index)
             parent_index = child_index
 
-    def swim(self, child_index: int):
-        while child_index > 1 and self.left_priority_less_than_right(
-            child_index // 2, child_index
-        ):
-            self.swap_by_index(child_index // 2, child_index)
+    def _swim(self, child_index: int):
+        while child_index > 1 and self._left_less_right(child_index // 2, child_index):
+            self._swap(child_index // 2, child_index)
             child_index = child_index // 2
 
-    def left_priority_less_than_right(self, left_index: int, right_index: int):
-        return self.storage[left_index].priority < self.storage[right_index].priority
+    def _left_less_right(self, left: int, right: int) -> bool:
+        return self._storage[left].priority < self._storage[right].priority
 
-    def swap_by_index(self, left_index: int, right_index: int):
-        self.storage[left_index], self.storage[right_index] = (
-            self.storage[right_index],
-            self.storage[left_index],
-        )
+    def _swap(self, left_index: int, right_index: int):
+        self._storage[left_index], self._storage[right_index] = self._storage[right_index], self._storage[left_index]

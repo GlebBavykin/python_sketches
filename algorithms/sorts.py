@@ -14,7 +14,10 @@ def bubblesort(array: List) -> List:
         for target in range(last_element):
             # Если текущий элемент больше следующего, то поменять их местами
             if array[target] > array[target + 1]:
-                array[target], array[target + 1] = array[target + 1], array[target]
+                array[target], array[target + 1] = (
+                    array[target + 1],
+                    array[target],
+                )
     return array
 
 
@@ -100,7 +103,9 @@ def quick_sort(array: List, low: int = 0, high: Optional[int] = None) -> List:
 
 
 def merge_sort(
-    array: List, left_index: Optional[int] = None, right_index: Optional[int] = None
+    array: List,
+    left_index: Optional[int] = None,
+    right_index: Optional[int] = None,
 ) -> List:
     """
     Merge Sort List

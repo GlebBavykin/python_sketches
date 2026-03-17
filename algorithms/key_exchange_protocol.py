@@ -25,16 +25,11 @@ class Participant:
         self.make_public_key()
 
     def make_public_key(self):
-        self.public_key = (
-            pow(self.crypto_base.public_base, self.private_key)
-            % self.crypto_base.public_modulus
-        )
+        self.public_key = pow(self.crypto_base.public_base, self.private_key) % self.crypto_base.public_modulus
         return self.public_key
 
     def make_key_hash(self, friend):
-        self.shared_key = (
-            pow(friend.public_key, self.private_key) % self.crypto_base.public_modulus
-        )
+        self.shared_key = pow(friend.public_key, self.private_key) % self.crypto_base.public_modulus
 
     def __rshift__(self, other):
         self.make_key_hash(other)

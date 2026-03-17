@@ -76,9 +76,7 @@ class AbstractSettings(ABC):
 
     @abstractmethod
     def get_saver(self) -> AbstractSaver:
-        raise NotImplementedError(
-            "This is a factory method. You should implement this!"
-        )
+        raise NotImplementedError("This is a factory method. You should implement this!")
 
     def save_config(self) -> Any:
         saver = self.get_saver()
