@@ -12,6 +12,26 @@ class Entry:
     priority: int
     data: str
 
+    def __init__(self, priority: int, data: str):
+        self.priority = priority
+        self.data = data
+
+    def __lt__(self, other):
+        return self.priority < other.priority
+
+    def __gt__(self, other):
+        return self.priority > other.priority
+
+    def __eq__(self, other):
+        return self.priority == other.priority
+
+    def __setitem__(self, b):
+        self.priority = b.priority
+        self.data = b.data
+
+    def __getitem__(self):
+        return self
+
 
 class PQ:
     """
@@ -42,20 +62,20 @@ class PQ:
     def _sink(self, parent_index: int):
         while 2 * parent_index <= self._size:
             child_index = 2 * parent_index
-            if child_index < self._size and self._left_less_right(child_index, child_index + 1):
+            if child_index < self._size and self._storage[child_index] < self._storage[child_index + 1]:
                 child_index += 1
-            if not self._left_less_right(parent_index, child_index):
+            if not self._storage[parent_index] < self._storage[child_index]:
                 break
-            self._swap(child_index, parent_index)
+            self._storage[child_index], self._storage[parent_index] = (
+                self._storage[parent_index],
+                self._storage[child_index],
+            )
             parent_index = child_index
 
     def _swim(self, child_index: int):
-        while child_index > 1 and self._left_less_right(child_index // 2, child_index):
-            self._swap(child_index // 2, child_index)
+        while child_index > 1 and self._storage[child_index // 2] < self._storage[child_index]:
+            self._storage[child_index // 2], self._storage[child_index] = (
+                self._storage[child_index],
+                self._storage[child_index // 2],
+            )
             child_index = child_index // 2
-
-    def _left_less_right(self, left: int, right: int) -> bool:
-        return self._storage[left].priority < self._storage[right].priority
-
-    def _swap(self, left_index: int, right_index: int):
-        self._storage[left_index], self._storage[right_index] = self._storage[right_index], self._storage[left_index]
