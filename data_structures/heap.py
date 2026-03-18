@@ -105,10 +105,12 @@ class PQ:
                 self._resize(self._capacity * 2)
             else:
                 raise IndexError("Queue is full")
-        if self._max_heap:
-            priority = - priority
         self._size += 1
-        self._storage[self._size] = Entry(priority, data)
+        if self._max_heap:
+            entry = Entry(-priority, data)
+        else:
+            entry = Entry(priority, data)
+        self._storage[self._size] = entry
         self._swim(self._size)
 
     def pop(self) -> Tuple[int, Any]:
@@ -118,9 +120,9 @@ class PQ:
         if self._size == 0:
             raise IndexError("Queue is empty")
         element = self._storage[1]
-        if self._max_heap:
-            element.priority = - element.priority
         self._storage[1], self._storage[self._size] = self._storage[self._size], None
         self._size -= 1
         self._sink(1)
+        if self._max_heap:
+            return -element.priority, element.data
         return element.priority, element.data
