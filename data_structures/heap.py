@@ -119,10 +119,10 @@ class PQ:
         """
         if self._size == 0:
             raise IndexError("Queue is empty")
-        element = self._storage[1]
+        entry = self._storage[1]
         self._storage[1], self._storage[self._size] = self._storage[self._size], None
         self._size -= 1
         self._sink(1)
         if self._max_heap:
-            return -element.priority, element.data
-        return element.priority, element.data
+            return -entry.priority, entry.data
+        return entry.priority, entry.data
