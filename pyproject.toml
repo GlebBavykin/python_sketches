@@ -1,18 +1,11 @@
 [project]
 name = "python-sketches"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.2.0"
+description = "algorithms, data structures, and design patterns implemented in python3"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
-    "requests",
-    "jsonpath_ng",
-    "lxml",
     "pytest",
-    "black",
-    "pytest",
-    "PyYAML",
-    "aiohttp"
 ]
 
 [dependency-groups]
