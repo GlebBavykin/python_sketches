@@ -1,6 +1,7 @@
 from dataclasses import dataclass
-from data_structures.custom_list import CustomList
 from typing import Optional, Any, Tuple
+
+from data_structures.custom_list import CustomList
 
 
 @dataclass
@@ -78,23 +79,25 @@ class PQ:
         return element.priority, element.data
 
     def _sink(self, parent_index: int):
-        while 2 * parent_index <= self._size:
-            child_index = 2 * parent_index
-            if child_index < self._size and self._storage[child_index] < self._storage[child_index + 1]:
-                child_index += 1
-            if not self._storage[parent_index] < self._storage[child_index]:
+        while parent_index * 2 <= self._size:
+            child_index = parent_index * 2
+            if self._storage[parent_index] > self._storage[child_index]:
                 break
-            self._swap_parent_and_child(parent_index, child_index)
+            if child_index < self._size:
+                if self._storage[child_index] < self._storage[child_index + 1]:
+                    child_index += 1
+            self._swap(parent_index, child_index)
             parent_index = child_index
 
     def _swim(self, child_index: int):
-        parent_index = child_index // 2
-        while child_index > 1 and self._storage[parent_index] < self._storage[child_index]:
+        while child_index > 1:
             parent_index = child_index // 2
-            self._swap_parent_and_child(parent_index, child_index)
+            if self._storage[parent_index] > self._storage[child_index]:
+                break
+            self._swap(parent_index, child_index)
             child_index = parent_index
 
-    def _swap_parent_and_child(self, p_index: int, c_index: int):
+    def _swap(self, p_index: int, c_index: int):
         self._storage[p_index], self._storage[c_index] = self._storage[c_index], self._storage[p_index]
 
     def _resize(self, new_capacity: int) -> None:
