@@ -21,9 +21,9 @@ class Entry:
     def __eq__(self, other) -> bool:
         return self.priority == other.priority
 
-    def __setitem__(self, b) -> None:
-        self.priority = b.priority
-        self.data = b.data
+    def __setitem__(self, other) -> None:
+        self.priority = other.priority
+        self.data = other.data
 
     def __getitem__(self) -> Self:
         return self
@@ -34,7 +34,7 @@ class PQ:
     Implementation of Heap Priority Queue
     """
 
-    def __init__(self, capacity: int = 5, resizeable: bool = True) -> None:
+    def __init__(self, capacity: int = 5, resizeable: bool = True, max_heap: bool = False) -> None:
         if capacity <= 2:
             raise ValueError("Capacity must be > 2")
         else:
@@ -42,6 +42,7 @@ class PQ:
         self._storage: CustomList[Optional[Entry]] = CustomList(None) * (capacity + 1)
         self._size = 0
         self._resizeable = resizeable
+        self._max_heap = max_heap
 
     def __len__(self):
         return self._size
@@ -103,7 +104,9 @@ class PQ:
             if self._resizeable:
                 self._resize(self._capacity * 2)
             else:
-                raise IndexError("Queue is Full")
+                raise IndexError("Queue is full")
+        if self._max_heap:
+            priority = - priority
         self._size += 1
         self._storage[self._size] = Entry(priority, data)
         self._swim(self._size)
@@ -113,8 +116,10 @@ class PQ:
         Pop an element from the priority queue
         """
         if self._size == 0:
-            raise IndexError("Queue is Empty")
+            raise IndexError("Queue is empty")
         element = self._storage[1]
+        if self._max_heap:
+            element.priority = - element.priority
         self._storage[1], self._storage[self._size] = self._storage[self._size], None
         self._size -= 1
         self._sink(1)

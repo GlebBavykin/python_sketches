@@ -28,12 +28,24 @@ def data_list():
 
 def test_append_elements_to_queue(priority_queue, data_list):
     """
-    Add elements to priority_queue from a python list
+    Add elements to min priority_queue from a python list
     """
     for item in data_list:
         priority_queue.put(*item)
     assert len(priority_queue) == len(data_list)
     for item in sorted(data_list, reverse=True):
+        assert priority_queue.pop() == item
+
+
+def test_max_heap(priority_queue, data_list):
+    """
+    Add elements to max priority_queue from a python list
+    """
+    priority_queue = PQ(max_heap=True)
+    for item in data_list:
+        priority_queue.put(*item)
+    assert len(priority_queue) == len(data_list)
+    for item in sorted(data_list):
         assert priority_queue.pop() == item
 
 
