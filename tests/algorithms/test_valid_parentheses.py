@@ -13,11 +13,11 @@ from algorithms.valid_parentheses import is_valid_parentheses
         ("]", False),
         (")", False),
         ("}", False),
-        # Две соответствующие закрытые скобки
+        # Две парные скобки
         ("[]", True),
         ("()", True),
         ("{}", True),
-        # Две несоответствующие закрытые скобки
+        # Две непарные скобки
         ("[)", False),
         ("[}", False),
         ("(]", False),
