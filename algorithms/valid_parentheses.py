@@ -1,27 +1,18 @@
-def validate_parentheses(data: str) -> bool:
+def is_valid_parentheses(data: str) -> bool:
     """
     Check if the parentheses has pairs
     """
     stack = []
-    match = {
+    parentheses_map = {
         "[": "]",
         "{": "}",
         "(": ")",
     }
     for char in data:
-        if char in ("[", "{", "("):
+        if char in parentheses_map.keys():
             stack.append(char)
-        elif char in ("]", "}", ")"):
-            if len(stack) == 0:
-                # граничное условие, когда сначала приходит закрывающая скоба
+        elif char in parentheses_map.values():
+            if not stack or parentheses_map[stack.pop()] != char:
+                # False если первая приходит закрывающая скобка, или предыдущая скобка не соответствует текущей
                 return False
-            if char == match[stack.pop()]:
-                continue
-            else:
-                # условие, когда предпоследняя скобка не соответствует текущей
-                return False
-    if len(stack) == 0:
-        return True
-    else:
-        # граничное условие, когда в стеке остались скобки без пары
-        return False
+    return len(stack) == 0

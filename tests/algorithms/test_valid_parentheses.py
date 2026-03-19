@@ -1,6 +1,6 @@
 import pytest
 
-from algorithms.valid_parentheses import validate_parentheses
+from algorithms.valid_parentheses import is_valid_parentheses
 
 
 @pytest.mark.parametrize(
@@ -38,6 +38,6 @@ from algorithms.valid_parentheses import validate_parentheses
 )
 def test_validate_parentheses(expression, result):
     """
-    Validate expression and
+    Check if the parentheses has pairs
     """
-    assert validate_parentheses(expression) == result
+    assert is_valid_parentheses(expression) == result
