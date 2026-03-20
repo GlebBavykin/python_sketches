@@ -1,6 +1,6 @@
 import pytest
 from random import randint
-from algorithms.key_exchange_protocol import CryptoBase, Participant
+from algorithms.dh_key_exchange_protocol import CryptoBase, Participant
 
 
 @pytest.fixture(scope="class")
@@ -8,7 +8,7 @@ def encryption_base():
     """
     Encryption base
     """
-    return CryptoBase(randint(2, 25), randint(101, 9999999999))
+    return CryptoBase(10, randint(101, 9999999999))
 
 
 @pytest.fixture(scope="class")
