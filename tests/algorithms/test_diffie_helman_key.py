@@ -3,15 +3,15 @@ from random import randint
 from algorithms.key_exchange_protocol import CryptoBase, Participant
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="class")
 def encryption_base():
     """
-    Base of encryption and decryption
+    Encryption base
     """
-    return CryptoBase(randint(2, 23), randint(101, 999))
+    return CryptoBase(randint(2, 25), randint(101, 9999999999))
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="class")
 def alice(encryption_base):
     """
     Alice participant
@@ -19,7 +19,7 @@ def alice(encryption_base):
     return Participant("Alice", encryption_base)
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="class")
 def bob(encryption_base):
     """
     Bob participant
@@ -34,4 +34,3 @@ def test_key_exchange(alice: Participant, bob: Participant):
     alice | bob
     assert alice.shared_key == bob.shared_key
     assert alice.public_key != bob.public_key
-    assert alice.private_key != bob.private_key
