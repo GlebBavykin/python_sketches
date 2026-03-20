@@ -12,29 +12,26 @@ def encryption_base():
 
 
 @pytest.fixture(scope="function")
-def Alice(encryption_base):
+def alice(encryption_base):
     """
-    Alice exchange participant
+    Alice participant
     """
     return Participant("Alice", encryption_base)
 
 
 @pytest.fixture(scope="function")
-def Bob(encryption_base):
+def bob(encryption_base):
     """
-    Bob exchange participant
+    Bob participant
     """
     return Participant("Bob", encryption_base)
 
 
-def test_key_exchange(Alice, Bob, encryption_base):
+def test_key_exchange(alice: Participant, bob: Participant):
     """
     Allice and Bob exchange Public Keys with each others and generate Shared Key
     """
-    print(encryption_base)
-    Alice | Bob
-    print(Alice)
-    print(Bob)
-    assert Alice.shared_key == Bob.shared_key
-    assert Alice.public_key != Bob.public_key
-    assert Alice.private_key != Bob.private_key
+    alice | bob
+    assert alice.shared_key == bob.shared_key
+    assert alice.public_key != bob.public_key
+    assert alice.private_key != bob.private_key

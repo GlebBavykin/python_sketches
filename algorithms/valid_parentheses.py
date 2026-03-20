@@ -13,6 +13,6 @@ def is_valid_parentheses(data: str) -> bool:
             stack.append(char)
         elif char in parentheses_map.values():
             if not stack or parentheses_map[stack.pop()] != char:
-                # False если первая приходит закрывающая скобка, или предыдущая скобка не соответствует текущей
+                # если первая приходит закрывающая скобка, или предыдущая скобка непарна текущей
                 return False
     return len(stack) == 0
