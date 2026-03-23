@@ -2,7 +2,7 @@ import random
 
 import pytest
 
-from algorithms.sorts import (
+from algorithms.sorting_algorithms import (
     bubblesort,
     selection_sort,
     insertion_sort,
