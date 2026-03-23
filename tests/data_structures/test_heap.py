@@ -20,7 +20,7 @@ def data_list():
         (100, "Haylee"),
         (80, "Cody"),
         (150, "Tatum"),
-        (53, "Brayan"),
+        (53, "Bryan"),
         (70, "David"),
         (71, "Tanner"),
     ]

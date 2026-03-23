@@ -66,23 +66,23 @@ def quick_sort(array: List, low: int = 0, high: Optional[int] = None) -> List:
     Quick Sort List
     """
 
-    def partition(array: List, low: int, high: int) -> int:
+    def partition(array_: List, low_: int, high_: int) -> int:
         # Точка поворота на последнем элементе
-        pivot = array[high]
+        pivot_ = array_[high_]
 
         # Минимальный элемент находится перед первым элементом
-        i = low - 1
+        i = low_ - 1
 
-        for j in range(low, high):
+        for j in range(low_, high_):
             # Выбрать только те, что меньше точки поворота
-            if array[j] < pivot:
+            if array[j] < pivot_:
                 # Теперь минимальный элемент на следующем месте
                 i += 1
                 # Поместить элемент меньше точки поворота на место минимального элемента
                 array[i], array[j] = array[j], array[i]
 
         # Поместить точку поворота после минимального элемента
-        array[i + 1], array[high] = array[high], array[i + 1]
+        array[i + 1], array[high_] = array[high_], array[i + 1]
 
         # Вывести индекс точки поворота в новом массиве
         return i + 1
@@ -106,7 +106,7 @@ def merge_sort(
     array: List,
     left_index: Optional[int] = None,
     right_index: Optional[int] = None,
-) -> List:
+) -> Optional[List]:
     """
     Merge Sort List
     """
@@ -119,7 +119,7 @@ def merge_sort(
 
     # Точка выхода из рекурсии: в массиве один элемент
     if left_index >= right_index:
-        return
+        return None
 
     # Вычислить середину массива
     middle = (left_index + right_index) // 2

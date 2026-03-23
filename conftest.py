@@ -1,10 +1,10 @@
-def pytest_terminal_summary(terminalreporter, exitstatus):
+def pytest_terminal_summary(terminalreporter, _):
     # Gather each report
     reports = []
-    for replist in terminalreporter.stats.values():
-        for rep in replist:
-            if hasattr(rep, "duration"):
-                reports.append(rep)
+    for reports_list in terminalreporter.stats.values():
+        for report in reports_list:
+            if hasattr(report, "duration"):
+                reports.append(report)
 
     if not reports:
         return
@@ -19,5 +19,5 @@ def pytest_terminal_summary(terminalreporter, exitstatus):
         if rep.when != "call":
             continue
 
-        nodeid = rep.nodeid.replace("::()::", "::")
-        terminalreporter.write_line("%02.2fs %s" % (rep.duration, nodeid))
+        node_id = rep.nodeid.replace("::()::", "::")
+        terminalreporter.write_line("%02.2fs %s" % (rep.duration, node_id))
