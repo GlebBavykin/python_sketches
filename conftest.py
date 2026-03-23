@@ -1,4 +1,4 @@
-def pytest_terminal_summary(terminalreporter, _):
+def pytest_terminal_summary(terminalreporter):
     # Gather each report
     reports = []
     for reports_list in terminalreporter.stats.values():
@@ -14,10 +14,10 @@ def pytest_terminal_summary(terminalreporter, _):
     reports.reverse()
 
     terminalreporter.write_sep("=", "test durations")
-    for rep in reports:
+    for report in reports:
         # Focus only on the call stage
-        if rep.when != "call":
+        if report.when != "call":
             continue
 
-        node_id = rep.nodeid.replace("::()::", "::")
-        terminalreporter.write_line("%02.2fs %s" % (rep.duration, node_id))
+        node_id = report.nodeid.replace("::()::", "::")
+        terminalreporter.write_line("%02.2fs %s" % (report.duration, node_id))
