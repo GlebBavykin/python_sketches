@@ -3,7 +3,7 @@ import random
 import pytest
 
 from algorithms.sorting_algorithms import (
-    bubblesort,
+    bubble_sort,
     selection_sort,
     insertion_sort,
     quick_sort,
@@ -31,7 +31,7 @@ def test_bubblesort_1(random_number_list, sorted_random_number_list):
     """
     Test bubblesort function
     """
-    assert sorted_random_number_list == bubblesort(random_number_list.copy())
+    assert sorted_random_number_list == bubble_sort(random_number_list.copy())
 
 
 def test_selection_sort_1(random_number_list, sorted_random_number_list):

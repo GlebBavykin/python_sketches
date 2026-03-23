@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 
-def bubblesort(array: List) -> List:
+def bubble_sort(array: List) -> List:
     """
     Bubble Sorti List
     """
