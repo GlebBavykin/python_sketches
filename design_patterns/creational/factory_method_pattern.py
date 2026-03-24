@@ -26,6 +26,7 @@ class JsonSaver(AbstractSaver):
     """
 
     def save_config(self) -> str:
+        # json product
         return json.dumps(self.data)
 
 
@@ -35,4 +36,5 @@ class YamlSaver(AbstractSaver):
     """
 
     def save_config(self) -> str:
+        # yaml product
         return yaml.dump(self.data)
