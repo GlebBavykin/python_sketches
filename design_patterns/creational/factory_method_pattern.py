@@ -8,33 +8,38 @@ from typing import Optional
 import yaml
 
 
-class AbstractSaver(ABC):
-    def __init__(self, data: Optional[dict] = None):
-        self.data: Optional[dict] = data
+class AbstractSettings(ABC):
+    def __init__(self, config: Optional[dict] = None):
+        self._config: Optional[dict] = config
 
-    def set_config(self, data: dict) -> None:
-        self.data = data
+    @property
+    def config(self) -> Optional[dict]:
+        return self._config
+
+    @config.setter
+    def config(self, config: dict):
+        self._config = config
 
     @abstractmethod
     def save_config(self) -> Any:
-        raise NotImplementedError("This is a factory method. You should implement this!")
+        raise NotImplementedError("This is a factory method. You should implement it!")
 
 
-class JsonSaver(AbstractSaver):
+class JsonSettings(AbstractSettings):
     """
     Save settings into JSON string
     """
 
     def save_config(self) -> str:
         # json product
-        return json.dumps(self.data)
+        return json.dumps(self.config)
 
 
-class YamlSaver(AbstractSaver):
+class YamlSettings(AbstractSettings):
     """
     Save settings into YAML string
     """
 
     def save_config(self) -> str:
         # yaml product
-        return yaml.dump(self.data)
+        return yaml.dump(self.config)
