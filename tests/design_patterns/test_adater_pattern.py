@@ -2,6 +2,10 @@ import pytest
 import math
 from design_patterns.structural.adapter import RoundHole, RoundPeg, SquarePeg, SquarePegAdapter
 
+"""
+    Peg-in-Hole Assembly Tests
+"""
+
 RADIUS = 12.5
 HEIGHT = 50.0
 WIDTH = RADIUS / (math.sqrt(2) / 2)  # Ширина колышка совпадает с радиусом отверстия
