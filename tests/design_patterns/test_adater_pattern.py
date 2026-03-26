@@ -20,46 +20,46 @@ def hole() -> RoundHole:
 
 
 @pytest.mark.parametrize(
-    "peg, is_fit",
+    "peg, is_compatible",
     [
         (RoundPeg(RADIUS - 0.5, HEIGHT - 10), True),
         (RoundPeg(RADIUS + 0.5, HEIGHT - 10), False),
         (RoundPeg(RADIUS - 0.5, HEIGHT + 10), False),
     ],
 )
-def test_round_compatibility(hole: RoundHole, peg: RoundPeg, is_fit: bool):
+def test_round_compatibility(hole: RoundHole, peg: RoundPeg, is_compatible: bool):
     """
     Test whether a peg is compatible with a round hole
     """
-    assert hole.fits(peg) == is_fit
+    assert hole.fits(peg) == is_compatible
 
 
 @pytest.mark.parametrize(
-    "peg, is_fit",
+    "peg, is_compatible",
     [
         (SquarePeg(RADIUS - 0.5, HEIGHT - 10), True),
         (SquarePeg(RADIUS + 0.5, HEIGHT - 10), False),
         (SquarePeg(RADIUS - 0.5, HEIGHT + 10), False),
     ],
 )
-def test_round_incompatibility(hole: RoundHole, peg: SquarePeg, is_fit: bool):
+def test_round_incompatibility(hole: RoundHole, peg: SquarePeg, is_compatible: bool):
     """
     Test whether a peg is incompatible with a round hole
     """
     with pytest.raises(AttributeError):
-        assert hole.fits(peg) == is_fit
+        assert hole.fits(peg) == is_compatible
 
 
 @pytest.mark.parametrize(
-    "peg, is_fit",
+    "peg, is_compatible",
     [
         (SquarePeg(WIDTH - 0.5, HEIGHT - 10), True),
         (SquarePeg(WIDTH + 0.5, HEIGHT - 10), False),
         (SquarePeg(WIDTH - 0.5, HEIGHT + 10), False),
     ],
 )
-def test_round_compatibility_with_adapter(hole: RoundHole, peg: SquarePeg, is_fit: bool):
+def test_round_compatibility_with_adapter(hole: RoundHole, peg: SquarePeg, is_compatible: bool):
     """
     Test whether adapter is compatible with a round hole
     """
-    assert hole.fits(SquarePegAdapter(peg)) == is_fit
+    assert hole.fits(SquarePegAdapter(peg)) == is_compatible
