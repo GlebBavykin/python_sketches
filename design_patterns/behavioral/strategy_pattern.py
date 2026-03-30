@@ -7,7 +7,7 @@ from api.mock_service import AuthApi, User, GuestLoginRequest, LoginRequest
 class AuthStrategy(ABC):
     @abstractmethod
     def authenticate(self, user: User, headers: list):
-        pass
+        raise NotImplementedError("This is a strategy method. You should implement this!")
 
 
 # 2. Конкретные стратегии
