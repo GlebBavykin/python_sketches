@@ -1,6 +1,7 @@
 import pytest
 
-from design_patterns.behavioral.strategy_pattern import User, AuthContext, UserAuth, GuestAuth
+from api.mock_service import User
+from design_patterns.behavioral.strategy_pattern import AuthContext, UserAuth, GuestAuth
 
 
 @pytest.fixture(scope="class")
