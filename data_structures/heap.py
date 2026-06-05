@@ -1,4 +1,4 @@
-from typing import Optional, Any, Tuple, Self
+from typing import Any, Optional, Self, Tuple
 
 from data_structures.custom_list import CustomList
 

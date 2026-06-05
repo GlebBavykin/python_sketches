@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from api.mock_service import AuthApi, User, GuestLoginRequest, LoginRequest
+from api.mock_service import AuthApi, GuestLoginRequest, LoginRequest, User
 
 
 # 1. Интерфейс Стратегии

@@ -2,13 +2,9 @@ import random
 
 import pytest
 
-from algorithms.sorting_algorithms import (
-    bubble_sort,
-    selection_sort,
-    insertion_sort,
-    quick_sort,
-    merge_sort,
-)
+from algorithms.sorting_algorithms import (bubble_sort, insertion_sort,
+                                           merge_sort, quick_sort,
+                                           selection_sort)
 
 
 @pytest.fixture(scope="class")

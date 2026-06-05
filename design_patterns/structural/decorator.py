@@ -1,7 +1,7 @@
-import zlib
 import base64
-from typing import Protocol
+import zlib
 from pathlib import Path
+from typing import Protocol
 
 
 class Fileable(Protocol):

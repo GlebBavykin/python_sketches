@@ -1,5 +1,7 @@
-import pytest
 from random import randint
+
+import pytest
+
 from algorithms.dh_key_exchange_protocol import CryptoBase, Participant
 
 

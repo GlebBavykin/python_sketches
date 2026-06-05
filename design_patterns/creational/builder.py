@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Self, List
+from typing import List, Self
 
 
 class Product:

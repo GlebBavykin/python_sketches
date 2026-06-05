@@ -1,6 +1,8 @@
-import pytest
 from copy import deepcopy
-from design_patterns.structural.bridge import Color, Circle, Rectangle, Shape
+
+import pytest
+
+from design_patterns.structural.bridge import Circle, Color, Rectangle, Shape
 
 
 @pytest.mark.parametrize(

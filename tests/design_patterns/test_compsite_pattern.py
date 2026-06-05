@@ -1,6 +1,6 @@
 import pytest
 
-from design_patterns.structural.composite import Product, Package
+from design_patterns.structural.composite import Package, Product
 
 
 @pytest.fixture(scope="class")

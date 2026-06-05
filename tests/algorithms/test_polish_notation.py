@@ -1,4 +1,5 @@
 import pytest
+
 from algorithms.polish_notation import evaluate_pn
 
 

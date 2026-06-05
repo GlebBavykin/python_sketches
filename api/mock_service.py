@@ -1,8 +1,8 @@
 from typing import Optional
-from uuid import uuid8, uuid1
+from uuid import uuid1, uuid8
 
 from faker import Faker
-from pydantic import BaseModel, Field, StrictStr, StrictBool
+from pydantic import BaseModel, Field, StrictBool, StrictStr
 
 fake = Faker()
 

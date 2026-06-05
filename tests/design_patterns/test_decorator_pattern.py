@@ -1,7 +1,10 @@
-import pytest
 from pathlib import Path
 from typing import Generator
-from design_patterns.structural.decorator import FileHandler, Base64Decorator, ZlibDecorator
+
+import pytest
+
+from design_patterns.structural.decorator import (Base64Decorator, FileHandler,
+                                                  ZlibDecorator)
 
 
 @pytest.fixture(scope="class")
