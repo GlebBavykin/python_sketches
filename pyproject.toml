@@ -8,7 +8,8 @@ dependencies = [
     "pytest",
     "PyYAML",
     "pydantic",
-    "faker"
+    "faker",
+    "requests>=2.34.2",
 ]
 
 [dependency-groups]
