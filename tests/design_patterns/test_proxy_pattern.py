@@ -1,6 +1,6 @@
 import pytest
-
 from requests import Session
+
 from design_patterns.structural.proxy import SessionWithLogging
 
 

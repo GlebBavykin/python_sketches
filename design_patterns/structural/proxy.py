@@ -1,6 +1,7 @@
-from typing import Protocol
-from requests import Session, Response
 import logging
+from typing import Protocol
+
+from requests import Response, Session
 
 logger = logging.getLogger(__name__)
 
