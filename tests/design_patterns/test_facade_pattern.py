@@ -1,4 +1,4 @@
-import itertools
+from typing import Iterable
 
 import pytest
 
@@ -7,21 +7,21 @@ from design_patterns.structural.facade import (Inventory, Item, Order,
 
 
 @pytest.fixture(scope="class")
-def cup_of_coffee() -> tuple[Item, Item, Item]:
+def cup_of_coffee() -> Iterable:
     """
     A cup of coffee
     """
-    return Item("Cup", 2), Item("Spoon", 0.5), Item("Coffee", 5)
+    return [Item("Cup", 2), Item("Spoon", 0.5), Item("Coffee", 5)]
 
 
 @pytest.fixture(scope="function")
-def inventory(cup_of_coffee) -> Inventory:
+def inventory(cup_of_coffee: Iterable) -> Inventory:
     """
     Inventory with 5 coffee cups
     """
     inventory = Inventory()
-    for iteration in itertools.repeat(cup_of_coffee, 5):
-        for item in iteration:
+    for _ in range(0, 5):
+        for item in cup_of_coffee:
             inventory.add_stock(item)
     return inventory
 
@@ -61,6 +61,6 @@ def test_place_order_with_facade(order_facade: OrderFacade, cup_of_coffee: tuple
     """
     Check inventory and place order with OrderFacade
     """
-    order = order_facade.place_order(list(cup_of_coffee), 1)
+    order = order_facade.place_order(cup_of_coffee, 1)
     assert order.status == OrderStatus.CONFIRMED
     assert order.calculate_total() == 7.5

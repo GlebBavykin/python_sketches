@@ -1,6 +1,7 @@
 from collections import Counter
 from dataclasses import dataclass
 from enum import Enum, auto
+from typing import Iterable
 
 
 class OrderStatus(Enum):
@@ -72,7 +73,7 @@ class OrderFacade:
     def __init__(self, inventory: Inventory):
         self.inventory = inventory
 
-    def place_order(self, items: list[Item], quantity: int):
+    def place_order(self, items: Iterable[Item], quantity: int):
         order = Order()
         for item in items:
             # 1. Check Inventory
