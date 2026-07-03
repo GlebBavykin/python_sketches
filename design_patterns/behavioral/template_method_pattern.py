@@ -9,7 +9,10 @@ class CreateDataFile(ABC):
         self.header = header
         self.data = data
 
-    def template_method(self) -> Path:
+    def create_file_with_header_and_data(self) -> Path:
+        """
+        template method for creating file with header and data
+        """
         self.setup_hook()
         self.create_file()
         self.write_header_to_file()
