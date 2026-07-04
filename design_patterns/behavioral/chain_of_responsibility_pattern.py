@@ -4,6 +4,7 @@ from typing import Any, Protocol
 
 logger = logging.getLogger(__name__)
 
+
 @dataclass
 class UserRequest:
     username: str = None
