@@ -1,4 +1,5 @@
 import pytest
+from _pytest.logging import LogCaptureFixture
 
 from design_patterns.behavioral.chain_of_responsibility_pattern import (
     CheckEmail, CheckIsActive, CheckName, UserRequest)
@@ -38,7 +39,7 @@ def check_is_active(check_email: CheckEmail) -> CheckIsActive:
     ],
 )
 def test_chain_of_responsibility_pattern(
-    user_request: UserRequest, outcomes: list[str], check_is_active: CheckIsActive, caplog
+    user_request: UserRequest, outcomes: list[str], check_is_active: CheckIsActive, caplog: LogCaptureFixture
 ) -> None:
     """
     Check chain of responsibility pattern: user request go through all chain print and capture logs
