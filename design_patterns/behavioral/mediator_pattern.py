@@ -55,7 +55,10 @@ class Button(Component):
     """
 
     def click(self) -> None:
-        self.mediator.notify(self, "click")
+        if self.mediator is None:
+            raise Exception("No mediator provided")
+        else:
+            self.mediator.notify(self, "click")
 
 
 class TextField(Component):
@@ -64,4 +67,7 @@ class TextField(Component):
     """
 
     def keypress(self, text) -> None:
-        self.mediator.notify(self, text)
+        if self.mediator is None:
+            raise Exception("No mediator provided")
+        else:
+            self.mediator.notify(self, text)
