@@ -28,6 +28,9 @@ class Product:
     def weight(self) -> float:
         return self._weight
 
+    def __str__(self) -> str:
+        return f"Price: {self.price}, Weight: {self.weight}"
+
 
 class Package:
     """
@@ -52,3 +55,6 @@ class Package:
     @property
     def weight(self) -> float:
         return sum(product.weight for product in self._products)
+
+    def __str__(self) -> str:
+        return f"Price: {self.price}, Weight: {self.weight}"
