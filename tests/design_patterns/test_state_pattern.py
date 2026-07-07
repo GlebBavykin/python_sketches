@@ -1,8 +1,11 @@
 import pytest
 
-from design_patterns.behavioral.state_pattern import (Document, DraftState,
-                                                      ModerationState,
-                                                      PublishedState)
+from design_patterns.behavioral.state_pattern import (
+    Document,
+    DraftState,
+    ModerationState,
+    PublishedState,
+)
 
 
 @pytest.fixture(scope="function")

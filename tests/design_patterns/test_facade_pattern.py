@@ -2,8 +2,13 @@ from typing import Iterable
 
 import pytest
 
-from design_patterns.structural.facade import (Inventory, Item, Order,
-                                               OrderFacade, OrderStatus)
+from design_patterns.structural.facade import (
+    Inventory,
+    Item,
+    Order,
+    OrderFacade,
+    OrderStatus,
+)
 
 
 @pytest.fixture(scope="class")

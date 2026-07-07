@@ -3,8 +3,11 @@ from typing import Generator
 
 import pytest
 
-from design_patterns.structural.decorator import (Base64Decorator, FileHandler,
-                                                  ZlibDecorator)
+from design_patterns.structural.decorator import (
+    Base64Decorator,
+    FileHandler,
+    ZlibDecorator,
+)
 
 
 @pytest.fixture(scope="class")

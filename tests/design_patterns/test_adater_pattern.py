@@ -2,8 +2,12 @@ import math
 
 import pytest
 
-from design_patterns.structural.adapter import (RoundHole, RoundPeg, SquarePeg,
-                                                SquarePegAdapter)
+from design_patterns.structural.adapter import (
+    RoundHole,
+    RoundPeg,
+    SquarePeg,
+    SquarePegAdapter,
+)
 
 """
     Peg-in-Hole Assembly Tests

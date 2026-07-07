@@ -3,9 +3,11 @@ from operator import add
 import pytest
 from _pytest.logging import LogCaptureFixture
 
-from design_patterns.behavioral.visitor_pattern import (CompositeVisitor,
-                                                        ExpressionItem,
-                                                        NumberItem)
+from design_patterns.behavioral.visitor_pattern import (
+    CompositeVisitor,
+    ExpressionItem,
+    NumberItem,
+)
 
 
 @pytest.fixture(scope="class")

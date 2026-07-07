@@ -5,8 +5,13 @@ import pytest
 import yaml
 
 from design_patterns.creational.abstract_factory_pattern import (
-    CONFIG_PATH, AbstractSettings, JsonSettings, PickleSettings, SaveMode,
-    YamlSettings)
+    CONFIG_PATH,
+    AbstractSettings,
+    JsonSettings,
+    PickleSettings,
+    SaveMode,
+    YamlSettings,
+)
 
 TEST_CONFIG = {
     "appName": "MyApp",

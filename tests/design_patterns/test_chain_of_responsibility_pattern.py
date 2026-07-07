@@ -2,7 +2,11 @@ import pytest
 from _pytest.logging import LogCaptureFixture
 
 from design_patterns.behavioral.chain_of_responsibility_pattern import (
-    CheckEmail, CheckIsActive, CheckName, UserRequest)
+    CheckEmail,
+    CheckIsActive,
+    CheckName,
+    UserRequest,
+)
 
 
 @pytest.fixture(scope="function")

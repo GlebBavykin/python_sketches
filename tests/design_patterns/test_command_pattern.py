@@ -1,8 +1,12 @@
 import pytest
 
-from design_patterns.behavioral.command_pattern import (OpenCommand,
-                                                        PrintCommand, Receiver,
-                                                        SaveCommand, Sender)
+from design_patterns.behavioral.command_pattern import (
+    OpenCommand,
+    PrintCommand,
+    Receiver,
+    SaveCommand,
+    Sender,
+)
 
 
 @pytest.fixture(scope="function")
