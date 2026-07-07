@@ -1,41 +1,38 @@
+from operator import add, mul
+
 import pytest
 
-from design_patterns.structural.composite import Package, Product
+from design_patterns.structural.composite import Expression, Number
 
 
-@pytest.fixture(scope="class")
-def product() -> Product:
+@pytest.mark.parametrize(
+    "expression, outcome",
+    [
+        (Expression(Number(1), add, Number(2)), 3),
+    ],
+)
+def test_calculate_composite_1(expression: Expression, outcome: float) -> None:
     """
-    One product
+    Calculate value of simple expression
     """
-    return Product(price=1, weight=2)
+    assert expression.value == outcome
 
 
-@pytest.fixture(scope="class")
-def package(product) -> Package:
+@pytest.mark.parametrize(
+    "expression, outcome",
+    [
+        (
+            Expression(
+                Expression(Number(3), mul, Number(5)),
+                add,
+                Expression(Number(7), mul, Number(8)),
+            ),
+            71,
+        ),
+    ],
+)
+def test_calculate_composite_2(expression: Expression, outcome: float) -> None:
     """
-    Package with other package and products in it
+    Calculate value of nested expression
     """
-    return (
-        Package()
-        .add_item(Package().add_item(product))
-        .add_item(product)
-        .add_item(Package().add_item(product).add_item(Package().add_item(product)))
-    )
-
-
-def test_calculate_composite(package: Package) -> None:
-    """
-    Calculate sum of products
-    """
-    assert package.price == 4
-    assert package.weight == 8
-
-
-def test_remove_product_from_composite(package: Package, product: Product) -> None:
-    """
-    Calculate sum of products
-    """
-    package.remove_item(product)
-    assert package.price == 3
-    assert package.weight == 6
+    assert expression.value == outcome

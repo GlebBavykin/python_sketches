@@ -1,60 +1,44 @@
-from typing import Protocol, Self
+from collections.abc import Callable
+from typing import Protocol
 
 
 class Calculable(Protocol):
     """
-    Common interface for Product and Package
+    Common interface for numbers and expressions
     """
 
-    def price(self) -> float: ...
-
-    def weight(self) -> float: ...
+    def value(self) -> float: ...
 
 
-class Product:
+class Number:
     """
-    Leaf of Package class
+    Leaf of expression class
     """
 
-    def __init__(self, price: float, weight: float):
-        self._price = price
-        self._weight = weight
+    def __init__(self, value: float):
+        self._value = value
 
     @property
-    def price(self) -> float:
-        return self._price
-
-    @property
-    def weight(self) -> float:
-        return self._weight
+    def value(self) -> float:
+        return self._value
 
     def __str__(self) -> str:
-        return f"Price: {self.price}, Weight: {self.weight}"
+        return f"Number: {self.value}"
 
 
-class Package:
+class Expression:
     """
-    Container of Product and Package
+    Container of numbers and operation
     """
 
-    def __init__(self):
-        self._products = []
-
-    def add_item(self, product: Product | Package) -> Self:
-        self._products.append(product)
-        return self
-
-    def remove_item(self, product: Product | Package) -> Self:
-        self._products.remove(product)
-        return self
+    def __init__(self, operand_a: Number | Expression, operation: Callable, operand_b: Number | Expression):
+        self._operand_a = operand_a
+        self._operation = operation
+        self._operand_b = operand_b
 
     @property
-    def price(self) -> float:
-        return sum(product.price for product in self._products)
-
-    @property
-    def weight(self) -> float:
-        return sum(product.weight for product in self._products)
+    def value(self) -> float:
+        return self._operation(self._operand_a.value, self._operand_b.value)
 
     def __str__(self) -> str:
-        return f"Price: {self.price}, Weight: {self.weight}"
+        return f"Value: {self.value}"

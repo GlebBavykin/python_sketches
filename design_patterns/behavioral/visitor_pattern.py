@@ -1,7 +1,7 @@
 import logging
 from typing import Protocol
 
-from design_patterns.structural.composite import Package, Product
+from design_patterns.structural.composite import Expression, Number
 
 logger = logging.getLogger(__name__)
 
@@ -11,9 +11,9 @@ class Visitor(Protocol):
     Visitor interface
     """
 
-    def visit_package(self, package: Package) -> None: ...
+    def visit_expression(self, expression: Expression) -> None: ...
 
-    def visit_product(self, product: Product) -> None: ...
+    def visit_number(self, number: Number) -> None: ...
 
 
 class CompositeVisitor(Visitor):
@@ -21,11 +21,11 @@ class CompositeVisitor(Visitor):
     Concrete Visitor
     """
 
-    def visit_package(self, package: Package) -> None:
-        logger.info(package)
+    def visit_expression(self, expression: Expression) -> None:
+        logger.info(expression)
 
-    def visit_product(self, product: Product) -> None:
-        logger.info(product)
+    def visit_number(self, number: Number) -> None:
+        logger.info(number)
 
 
 class Item(Protocol):
@@ -36,19 +36,11 @@ class Item(Protocol):
     def accept(self, visitor: Visitor) -> None: ...
 
 
-class ProductItem(Item, Product):
-    """
-    Product
-    """
-
+class NumberItem(Item, Number):
     def accept(self, visitor: Visitor) -> None:
-        visitor.visit_product(self)
+        visitor.visit_number(self)
 
 
-class PackageItem(Item, Package):
-    """
-    A Package for products and another packages
-    """
-
+class ExpressionItem(Item, Expression):
     def accept(self, visitor: Visitor) -> None:
-        visitor.visit_package(self)
+        visitor.visit_expression(self)
