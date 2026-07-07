@@ -10,7 +10,7 @@ class Calculable(Protocol):
     def value(self) -> float: ...
 
 
-class Number:
+class Number(Callable):
     """
     Leaf of expression class
     """
@@ -26,7 +26,7 @@ class Number:
         return f"Number: {self.value}"
 
 
-class Expression:
+class Expression(Callable):
     """
     Container of numbers and operation
     """
