@@ -1,12 +1,13 @@
 import logging
-from typing import Protocol
+from typing import Protocol, runtime_checkable
 
 from design_patterns.structural.composite import Expression, Number
 
 logger = logging.getLogger(__name__)
 
 
-class Visitor(Protocol):
+@runtime_checkable
+class Visitorable(Protocol):
     """
     Visitor interface
     """
@@ -16,15 +17,17 @@ class Visitor(Protocol):
     def visit_number(self, number: Number) -> None: ...
 
 
-class CompositeVisitor(Visitor):
+class CompositeVisitor:
     """
     Concrete Visitor
     """
 
-    def visit_expression(self, expression: Expression) -> None:
+    @staticmethod
+    def visit_expression(expression: Expression) -> None:
         logger.info(expression)
 
-    def visit_number(self, number: Number) -> None:
+    @staticmethod
+    def visit_number(number: Number) -> None:
         logger.info(number)
 
 
@@ -33,14 +36,14 @@ class Item(Protocol):
     Item interface
     """
 
-    def accept(self, visitor: Visitor) -> None: ...
+    def accept(self, visitor: Visitorable) -> None: ...
 
 
 class NumberItem(Item, Number):
-    def accept(self, visitor: Visitor) -> None:
+    def accept(self, visitor: Visitorable) -> None:
         visitor.visit_number(self)
 
 
 class ExpressionItem(Item, Expression):
-    def accept(self, visitor: Visitor) -> None:
+    def accept(self, visitor: Visitorable) -> None:
         visitor.visit_expression(self)

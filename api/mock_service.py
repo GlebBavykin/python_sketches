@@ -12,12 +12,12 @@ class User(BaseModel):
     Пользователь
     """
 
-    user_id: StrictStr = Field(default=None, description="Внутренний уникальный идентификатор")
+    user_id: StrictStr = Field(default="", description="Внутренний уникальный идентификатор")
     external_user_id: StrictStr = Field(default=f"{fake.name()}", description="Внешний идентификатор пользователя")
     nickname: StrictStr = Field(default=f"{fake.name()}", description="Псевдоним пользователя")
     email: StrictStr = Field(default=f"{fake.email()}", description="Email пользователя")
     password: StrictStr = Field(default=f"{fake.password()}", description="Пароль пользователя")
-    session_id: StrictStr = Field(default=None, description="Сессия пользователя")
+    session_id: StrictStr = Field(default="", description="Сессия пользователя")
     is_guest: StrictBool = Field(default=False, description="фла, что пользователь гость")
 
 

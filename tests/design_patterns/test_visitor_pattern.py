@@ -7,11 +7,12 @@ from design_patterns.behavioral.visitor_pattern import (
     CompositeVisitor,
     ExpressionItem,
     NumberItem,
+    Visitorable,
 )
 
 
 @pytest.fixture(scope="class")
-def visitor() -> CompositeVisitor:
+def visitor() -> Visitorable:
     """
     Visitor instance
     """
@@ -25,7 +26,7 @@ def visitor() -> CompositeVisitor:
     ],
 )
 def test_visitor_for_composite_expression(
-    expression: ExpressionItem, visitor: CompositeVisitor, caplog: LogCaptureFixture, outcome: str
+    expression: ExpressionItem, visitor: Visitorable, caplog: LogCaptureFixture, outcome: str
 ) -> None:
     """
     Check visitor pattern: accept visitor for composite expression and capture log from the console
@@ -41,7 +42,7 @@ def test_visitor_for_composite_expression(
     ],
 )
 def test_visitor_for_composite_number(
-    number: NumberItem, visitor: CompositeVisitor, caplog: LogCaptureFixture, outcome: str
+    number: NumberItem, visitor: Visitorable, caplog: LogCaptureFixture, outcome: str
 ) -> None:
     """
     Check visitor pattern: accept visitor for composite number and capture log from the console

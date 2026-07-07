@@ -39,7 +39,7 @@ class PQ:
             raise ValueError("Capacity must be > 2")
         else:
             self._capacity = capacity
-        self._storage: CustomList[Optional[Entry]] = CustomList(None) * (capacity + 1)
+        self._storage: CustomList = CustomList(None) * (capacity + 1)
         self._size = 0
         self._resizeable = resizeable
         self._max_heap = max_heap

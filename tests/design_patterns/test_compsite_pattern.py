@@ -2,7 +2,7 @@ from operator import add, mul
 
 import pytest
 
-from design_patterns.structural.composite import Expression, Number
+from design_patterns.structural.composite import Evaluatable, Expression, Number
 
 
 @pytest.mark.parametrize(
@@ -11,7 +11,7 @@ from design_patterns.structural.composite import Expression, Number
         (Expression(Number(1), add, Number(2)), 3),
     ],
 )
-def test_calculate_composite_1(expression: Expression, outcome: float) -> None:
+def test_calculate_composite_1(expression: Evaluatable, outcome: float) -> None:
     """
     Calculate value of simple expression
     """
@@ -31,7 +31,7 @@ def test_calculate_composite_1(expression: Expression, outcome: float) -> None:
         ),
     ],
 )
-def test_calculate_composite_2(expression: Expression, outcome: float) -> None:
+def test_calculate_composite_2(expression: Evaluatable, outcome: float) -> None:
     """
     Calculate value of nested expression
     """

@@ -1,9 +1,10 @@
 import logging
-from typing import Protocol
+from typing import Protocol, runtime_checkable
 
 logger = logging.getLogger(__name__)
 
 
+@runtime_checkable
 class Notifiable(Protocol):
     """
     Common interface for mediators
@@ -12,7 +13,7 @@ class Notifiable(Protocol):
     def notify(self, sender, event: str) -> None: ...
 
 
-class Mediator(Notifiable):
+class Mediator:
     """
     Mediator for components
     """
@@ -37,15 +38,15 @@ class Component:
     Components communicate with a mediator
     """
 
-    def __init__(self, mediator: Mediator | None = None) -> None:
+    def __init__(self, mediator: Notifiable | None = None) -> None:
         self._mediator = mediator
 
     @property
-    def mediator(self) -> Mediator | None:
+    def mediator(self) -> Notifiable | None:
         return self._mediator
 
     @mediator.setter
-    def mediator(self, mediator: Mediator) -> None:
+    def mediator(self, mediator: Notifiable) -> None:
         self._mediator = mediator
 
 

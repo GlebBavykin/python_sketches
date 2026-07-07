@@ -1,15 +1,15 @@
 import logging
 from dataclasses import dataclass
-from typing import Any, Protocol
+from typing import Any, Protocol, Optional
 
 logger = logging.getLogger(__name__)
 
 
 @dataclass
 class UserRequest:
-    username: str = None
-    email: str = None
-    is_active: bool = False
+    username: Optional[str] = None
+    email: Optional[str] = None
+    is_active: Optional[bool] = False
 
 
 class Executable(Protocol):

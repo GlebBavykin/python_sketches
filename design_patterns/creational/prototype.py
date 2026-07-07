@@ -70,7 +70,7 @@ class Student(PersonPrototype):
 
 class Registry:
     def __init__(self) -> None:
-        self.persons = {}
+        self.persons: dict = {}
 
     def add_person(self, name: str, prototype: PersonPrototype) -> None:
         self.persons[name] = prototype

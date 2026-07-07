@@ -1,7 +1,8 @@
 from collections.abc import Callable
-from typing import Protocol
+from typing import Protocol, runtime_checkable
 
 
+@runtime_checkable
 class Evaluatable(Protocol):
     """
     Common interface for numbers and expressions
@@ -10,7 +11,7 @@ class Evaluatable(Protocol):
     def eval(self) -> float: ...
 
 
-class Number(Evaluatable):
+class Number:
     """
     Leaf of expression class
     """
@@ -25,7 +26,7 @@ class Number(Evaluatable):
         return f"Number: {self.eval()}"
 
 
-class Expression(Evaluatable):
+class Expression:
     """
     Container of numbers and operation
     """

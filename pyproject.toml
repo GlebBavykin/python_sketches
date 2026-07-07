@@ -15,6 +15,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "isort",
+    "mypy>=2.1.0",
     "ruff",
 ]
 
@@ -28,3 +29,9 @@ skip-magic-trailing-comma = false
 [tool.isort]
 profile = "black"
 line_length = 88
+
+
+[tool.mypy]
+python_version = ">=3.14.5"
+strict = false
+ignore_missing_imports = true

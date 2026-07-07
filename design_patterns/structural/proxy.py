@@ -1,11 +1,12 @@
 import logging
-from typing import Protocol
+from typing import Protocol, runtime_checkable
 
 from requests import Response, Session
 
 logger = logging.getLogger(__name__)
 
 
+@runtime_checkable
 class Requestable(Protocol):
     """
     Common interface for Session and Proxy
@@ -26,7 +27,7 @@ class Requestable(Protocol):
     def delete(self, url, **kwargs) -> Response: ...
 
 
-class SessionWithLogging(Requestable):
+class SessionWithLogging:
     """
     Proxy Session class with logging features
     """

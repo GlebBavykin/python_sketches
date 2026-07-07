@@ -1,9 +1,10 @@
 import base64
 import zlib
 from pathlib import Path
-from typing import Protocol
+from typing import Protocol, runtime_checkable
 
 
+@runtime_checkable
 class Fileable(Protocol):
     """
     File interface
@@ -38,7 +39,7 @@ class Base64Decorator:
     Base64 decorator for FileHandler
     """
 
-    def __init__(self, source: FileHandler):
+    def __init__(self, source: Fileable):
         self.wrappee = source
 
     def write(self, data: str):

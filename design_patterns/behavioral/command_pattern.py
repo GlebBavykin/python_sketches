@@ -27,7 +27,7 @@ class Sender:
 
 class Receiver:
     def __init__(self) -> None:
-        self._received_request = []
+        self._received_request: list = []
 
     def get_request(self):
         return self._received_request.pop(0)

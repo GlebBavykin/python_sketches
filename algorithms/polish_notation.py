@@ -5,7 +5,7 @@ def evaluate_pn(expression: str, reverse=True) -> int:
     """
     Evaluate polish expressions and return result
     """
-    stack = deque()
+    stack: deque = deque()
     tokens = expression.split()
     if not reverse:
         tokens = tokens[::-1]

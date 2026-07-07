@@ -16,7 +16,7 @@ class State(ABC):
 class Document:
     def __init__(self, name: str) -> None:
         self.name = name
-        self._state = DraftState(self)
+        self._state: State = DraftState(self)
 
     def __str__(self):
         return f"Document {self.name}"
