@@ -8,9 +8,8 @@
     ```bash
     
     curl -LsSf https://astral.sh/uv/install.sh | sh
-    uv venv
-    source .venv/bin/activate
     uv sync
+    source .venv/bin/activate
     ```
 - для запуска автотестов следует выполнить:
   ````bash
