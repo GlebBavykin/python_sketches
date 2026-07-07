@@ -15,7 +15,7 @@ def test_calculate_composite_1(expression: Expression, outcome: float) -> None:
     """
     Calculate value of simple expression
     """
-    assert expression.value == outcome
+    assert expression.eval() == outcome
 
 
 @pytest.mark.parametrize(
@@ -35,4 +35,4 @@ def test_calculate_composite_2(expression: Expression, outcome: float) -> None:
     """
     Calculate value of nested expression
     """
-    assert expression.value == outcome
+    assert expression.eval() == outcome

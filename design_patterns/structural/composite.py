@@ -2,15 +2,15 @@ from collections.abc import Callable
 from typing import Protocol
 
 
-class Calculable(Protocol):
+class Evaluatable(Protocol):
     """
     Common interface for numbers and expressions
     """
 
-    def value(self) -> float: ...
+    def eval(self) -> float: ...
 
 
-class Number(Callable):
+class Number(Evaluatable):
     """
     Leaf of expression class
     """
@@ -18,15 +18,14 @@ class Number(Callable):
     def __init__(self, value: float):
         self._value = value
 
-    @property
-    def value(self) -> float:
+    def eval(self) -> float:
         return self._value
 
     def __str__(self) -> str:
-        return f"Number: {self.value}"
+        return f"Number: {self.eval()}"
 
 
-class Expression(Callable):
+class Expression(Evaluatable):
     """
     Container of numbers and operation
     """
@@ -36,9 +35,8 @@ class Expression(Callable):
         self._operation = operation
         self._operand_b = operand_b
 
-    @property
-    def value(self) -> float:
-        return self._operation(self._operand_a.value, self._operand_b.value)
+    def eval(self) -> float:
+        return self._operation(self._operand_a.eval(), self._operand_b.eval())
 
     def __str__(self) -> str:
-        return f"Value: {self.value}"
+        return f"Value: {self.eval()}"
