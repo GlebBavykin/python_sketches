@@ -1,6 +1,6 @@
 import logging
 from dataclasses import dataclass
-from typing import Any, Protocol, Optional
+from typing import Any, Optional, Protocol
 
 logger = logging.getLogger(__name__)
 

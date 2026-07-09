@@ -1,6 +1,6 @@
 import pytest
+from _pytest.logging import LogCaptureFixture
 
-from api.mock_service import User
 from design_patterns.behavioral.strategy_pattern import AuthContext, GuestAuth, UserAuth
 
 
@@ -13,26 +13,20 @@ def auth() -> AuthContext:
 
 
 @pytest.mark.parametrize(
-    "user",
+    "user, outcome",
     [
-        User(nickname="John", is_guest=False),
-        User(nickname="Doe", is_guest=True),
+        ("guest", "Guest authorization"),
+        ("user", "Regular user Authorization"),
     ],
 )
-def test_strategy_pattern(user, auth):
+def test_strategy_pattern(user: str, auth: AuthContext, caplog: LogCaptureFixture, outcome: str):
     """
     Test strategy pattern
     """
 
-    if user.is_guest:
+    if user == "guest":
         auth.set_strategy(GuestAuth())
-    else:
+    if user == "user":
         auth.set_strategy(UserAuth())
-
-    try:
-        auth.login(user, [{"Content-type": "application/json"}])
-    except AttributeError:
-        pytest.fail("User auth failed")
-
-    assert user.session_id is not None
-    assert user.user_id is not None
+    auth.login(user=user)
+    assert outcome in caplog.text
