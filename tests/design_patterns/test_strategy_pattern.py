@@ -1,7 +1,12 @@
 import pytest
 from _pytest.logging import LogCaptureFixture
 
-from design_patterns.behavioral.strategy_pattern import AuthContext, GuestAuth, UserAuth
+from design_patterns.behavioral.strategy_pattern import (
+    AuthContext,
+    AuthStrategy,
+    GuestAuth,
+    UserAuth,
+)
 
 
 @pytest.fixture(scope="class")
@@ -13,20 +18,16 @@ def auth() -> AuthContext:
 
 
 @pytest.mark.parametrize(
-    "user, outcome",
+    "strategy, outcome",
     [
-        ("guest", "Guest authorization"),
-        ("user", "Regular user Authorization"),
+        (GuestAuth(), "Guest authorization"),
+        (UserAuth(), "Regular user Authorization"),
     ],
 )
-def test_strategy_pattern(user: str, auth: AuthContext, caplog: LogCaptureFixture, outcome: str):
+def test_strategy_pattern(strategy: AuthStrategy, auth: AuthContext, caplog: LogCaptureFixture, outcome: str):
     """
     Test strategy pattern
     """
-
-    if user == "guest":
-        auth.set_strategy(GuestAuth())
-    if user == "user":
-        auth.set_strategy(UserAuth())
-    auth.login(user=user)
+    auth.set_strategy(strategy)
+    auth.login()
     assert outcome in caplog.text

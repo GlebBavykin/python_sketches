@@ -36,5 +36,5 @@ class AuthContext:
     def set_strategy(self, strategy: AuthStrategy):
         self._strategy = strategy
 
-    def login(self, user: str):
+    def login(self, user: str = "user_1"):
         return self._strategy.authenticate(user)
