@@ -1,11 +1,12 @@
-from typing import Any
+from dataclasses import dataclass
+from typing import Any, Optional
 
 
+@dataclass
 class Node:
-    def __init__(self, data: Any):
-        self.next: Node | None = None
-        self.previous: Node | None = None
-        self.data: Any = data
+    data: Any
+    next: Optional[Node] = None
+    previous: Optional[Node] = None
 
 
 class DoublyLinkedList:
@@ -27,7 +28,8 @@ class DoublyLinkedList:
         if self._head is None:
             self._head = new_node
         else:
-            self._tail.next = new_node
+            if self._tail is not None:
+                self._tail.next = new_node
         new_node.previous = self._tail
         self._tail = new_node
         self._length += 1
@@ -44,7 +46,8 @@ class DoublyLinkedList:
         else:
             new_node.next = self._head
             self._head = new_node
-            self._head.next.previous = new_node
+            if self._head.next is not None:
+                self._head.next.previous = new_node
             self._length += 1
         return self
 
@@ -52,10 +55,10 @@ class DoublyLinkedList:
         """
         Remove and return data from the right
         """
-        try:
+        if self._tail is not None:
             data = self._tail.data
             self.delete_node(self._tail)
-        except AttributeError:
+        else:
             raise ValueError("List is empty")
         return data
 
@@ -63,10 +66,10 @@ class DoublyLinkedList:
         """
         Removes and returns  data from the left end
         """
-        try:
+        if self._head is not None:
             data = self._head.data
             self.delete_node(self._head)
-        except AttributeError:
+        else:
             raise ValueError("List is empty")
         return data
 
@@ -87,8 +90,9 @@ class DoublyLinkedList:
             self._tail = node.previous
             del node
         else:
-            node.previous.next = node.next
-            node.next.previous = node.previous
+            if node.previous is not None and node.next is not None:
+                node.previous.next = node.next
+                node.next.previous = node.previous
             del node
         self._length -= 1
 
@@ -139,8 +143,11 @@ class DoublyLinkedList:
         if self._iter_position == self._length:
             raise StopIteration
         else:
-            current_node = self._head
-            for _ in range(self._iter_position):
-                current_node = current_node.next
-            self._iter_position += 1
-            return current_node.data
+            if self._head is not None:
+                current_node = self._head
+                for _ in range(self._iter_position):
+                    current_node = current_node.next
+                self._iter_position += 1
+                return current_node.data
+            else:
+                raise ValueError("List is empty")
