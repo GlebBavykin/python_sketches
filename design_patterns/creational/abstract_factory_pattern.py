@@ -28,7 +28,7 @@ class AbstractSaver(ABC):
         pass
 
     @abstractmethod
-    def set_config(self, config: dict) -> None:
+    def set_config(self, data: dict) -> None:
         pass
 
 
@@ -37,7 +37,7 @@ class JsonSaver(AbstractSaver):
     Concrete product: Save settings into JSON string
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.data: Optional[dict] = None
 
     def get_config(self) -> str:
@@ -52,7 +52,7 @@ class YamlSaver(AbstractSaver):
     Concrete product: Save settings into YAML string
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.data: Optional[dict] = None
 
     def get_config(self) -> str:
@@ -67,7 +67,7 @@ class PickleSaver(AbstractSaver):
     Concrete product: Save settings into PICKLE file
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.data: Optional[dict] = None
 
     def get_config(self) -> Path:

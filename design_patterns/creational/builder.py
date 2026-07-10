@@ -5,7 +5,7 @@ from typing import List, Self
 
 
 class Product:
-    def __init__(self):
+    def __init__(self) -> None:
         self._parts: List[str] = []
 
     def add_part(self, part: str):

@@ -27,7 +27,7 @@ class FileHandler:
         with self._path.open(mode) as file:
             file.write(data)
 
-    def read(self, mode="r") -> str:
+    def read(self, mode="r") -> bytes:
         data = ""
         with self._path.open(mode) as file:
             data = file.read()
@@ -39,7 +39,7 @@ class Base64Decorator:
     Base64 decorator for FileHandler
     """
 
-    def __init__(self, source: Fileable):
+    def __init__(self, source: FileHandler):
         self.wrappee = source
 
     def write(self, data: str):
@@ -64,5 +64,5 @@ class ZlibDecorator:
         self.wrappee.write(zlib_data, mode="wb")
 
     def read(self) -> str:
-        zlib_data = self.wrappee.read(mode="rb")
+        zlib_data: bytes = self.wrappee.read(mode="rb")
         return zlib.decompress(zlib_data).decode("utf-8")

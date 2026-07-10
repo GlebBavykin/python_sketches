@@ -3,9 +3,9 @@ from typing import Any
 
 class Node:
     def __init__(self, data: Any):
-        self.next = None
-        self.previous = None
-        self.data = data
+        self.next: Node | None = None
+        self.previous: Node | None = None
+        self.data: Any = data
 
 
 class DoublyLinkedList:
