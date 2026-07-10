@@ -9,6 +9,7 @@ dependencies = [
     "PyYAML",
     "faker",
     "requests",
+    "pytest-xdist"
 ]
 
 [dependency-groups]
@@ -16,6 +17,8 @@ dev = [
     "isort",
     "mypy>=2.1.0",
     "pyright>=1.1.411",
+    "pytest>=9.0.2",
+    "pytest-xdist>=3.8.0",
     "ruff",
 ]
 
