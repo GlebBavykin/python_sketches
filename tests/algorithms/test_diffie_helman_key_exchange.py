@@ -33,6 +33,6 @@ def test_key_exchange(alice: Participant, bob: Participant):
     """
     Allice and Bob exchange Public Keys with each others and generate Shared Key
     """
-    alice | bob
+    _ = alice | bob
     assert alice.shared_key == bob.shared_key
     assert alice.public_key != bob.public_key

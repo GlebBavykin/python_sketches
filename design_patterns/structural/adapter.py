@@ -58,8 +58,11 @@ class RoundHole:
     def height(self):
         return self._height
 
-    def fits(self, peg: RoundPeg):
-        return self.radius > peg.radius and self.height > peg.length
+    def fits(self, peg: RoundPeg | SquarePeg):
+        if isinstance(peg, RoundPeg):
+            return self.radius > peg.radius and self.height > peg.length
+        else:
+            raise AttributeError
 
 
 class SquarePegAdapter(RoundPeg):

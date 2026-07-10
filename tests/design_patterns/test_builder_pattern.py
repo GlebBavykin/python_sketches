@@ -1,32 +1,6 @@
 import pytest
 
-from design_patterns.creational.builder import Builder, Product
-
-
-class ConcreteBuilder(Builder):
-    def __init__(self):
-        self._product = None
-        self.reset()
-
-    def reset(self):
-        self._product = Product()
-
-    def get_result(self) -> Product:
-        product = self._product.get_parts()
-        self.reset()
-        return product
-
-    def produce_part_a(self):
-        self._product.add_part("a")
-        return self
-
-    def produce_part_b(self):
-        self._product.add_part("b")
-        return self
-
-    def produce_part_c(self):
-        self._product.add_part("c")
-        return self
+from design_patterns.creational.builder import Builder, ConcreteBuilder
 
 
 class Director:

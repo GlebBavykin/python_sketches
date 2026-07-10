@@ -21,9 +21,6 @@ class Shape:
     def __init__(self, color: Color = Color.WITHOUT_COLOR):
         self.color = color
 
-    def __repr__(self):
-        pass
-
 
 class Circle(Shape):
     """
@@ -37,7 +34,7 @@ class Circle(Shape):
     def change_radius(self, new_radius):
         self.__radius = new_radius
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Circle({self.__radius}, {self.color}) with {self.color} color"
 
 
@@ -55,5 +52,5 @@ class Rectangle(Shape):
         self.__width = new_width
         self.__height = new_height
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Rectangle({self.__width}, {self.__height}) with {self.color} color"

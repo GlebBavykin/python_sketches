@@ -28,8 +28,8 @@ class Participant:
         self._name = name
         self._crypto_base = crypto_base
         self._private_key = randint(a=99, b=100000)
-        self._public_key = None
-        self._shared_key = None
+        self._public_key = 0
+        self._shared_key = 0
         self._make_public_key()
 
     def __rshift__(self, other: Participant):
@@ -56,7 +56,7 @@ __________________________________________________"""
         self._shared_key = pow(other.public_key, self._private_key) % self._crypto_base.modulus
 
     @property
-    def public_key(self):
+    def public_key(self) -> int:
         return self._public_key
 
     @property
