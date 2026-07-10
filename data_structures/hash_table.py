@@ -95,7 +95,7 @@ class DynamicHashTable:
         except IndexError, TypeError, KeyError:
             return default
 
-    def pop(self, key: str, default: Any = None) -> None:
+    def pop(self, key: str, default: Any = None) -> Any:
         try:
             for entry in self._table[self._hash(key)]:
                 if entry.key == key:
