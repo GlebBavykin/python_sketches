@@ -13,5 +13,5 @@
     ```
 - для запуска автотестов следует выполнить:
   ````bash
-  uv run pytest
+  uv run pytest -n auto
   ````
