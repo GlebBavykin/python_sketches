@@ -1,7 +1,7 @@
 import pytest
 from _pytest.logging import LogCaptureFixture
 
-from design_patterns.behavioral.mediator_pattern import Button, Mediator, TextField
+from design_patterns.behavioral.mediator import Button, Mediator, TextField
 
 
 @pytest.fixture(scope="function")

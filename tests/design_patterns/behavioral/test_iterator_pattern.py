@@ -1,6 +1,6 @@
 import pytest
 
-from design_patterns.behavioral.iterator_pattern import MyCollection
+from design_patterns.behavioral.iterator import MyCollection
 
 
 @pytest.fixture(scope="function")

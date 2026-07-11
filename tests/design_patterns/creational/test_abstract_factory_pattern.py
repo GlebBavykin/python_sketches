@@ -4,7 +4,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-from design_patterns.creational.abstract_factory_pattern import (
+from design_patterns.creational.abstract_factory import (
     CONFIG_PATH,
     AbstractSettings,
     JsonSettings,

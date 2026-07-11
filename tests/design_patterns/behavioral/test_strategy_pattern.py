@@ -1,7 +1,7 @@
 import pytest
 from _pytest.logging import LogCaptureFixture
 
-from design_patterns.behavioral.strategy_pattern import (
+from design_patterns.behavioral.strategy import (
     AuthContext,
     AuthStrategy,
     GuestAuth,

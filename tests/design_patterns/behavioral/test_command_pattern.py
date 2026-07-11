@@ -1,6 +1,6 @@
 import pytest
 
-from design_patterns.behavioral.command_pattern import (
+from design_patterns.behavioral.command import (
     OpenCommand,
     PrintCommand,
     Receiver,

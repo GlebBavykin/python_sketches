@@ -3,7 +3,7 @@ import json
 import pytest
 import yaml
 
-from design_patterns.creational.factory_method_pattern import JsonSettings, YamlSettings
+from design_patterns.creational.factory_method import JsonSettings, YamlSettings
 
 TEST_CONFIG = {
     "appName": "MyApp",

@@ -1,6 +1,6 @@
 import pytest
 
-from design_patterns.behavioral.observer_pattern import Listener, Publisher
+from design_patterns.behavioral.observer import Listener, Publisher
 
 
 @pytest.fixture(scope="function")

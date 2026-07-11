@@ -3,7 +3,7 @@ from operator import add
 import pytest
 from _pytest.logging import LogCaptureFixture
 
-from design_patterns.behavioral.visitor_pattern import (
+from design_patterns.behavioral.visitor import (
     CompositeVisitor,
     ExpressionItem,
     NumberItem,

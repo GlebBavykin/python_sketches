@@ -1,6 +1,6 @@
 import pytest
 
-from design_patterns.behavioral.state_pattern import (
+from design_patterns.behavioral.state import (
     Document,
     DraftState,
     ModerationState,

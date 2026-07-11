@@ -1,6 +1,6 @@
 import pytest
 
-from design_patterns.behavioral.template_method_pattern import StringDataFile
+from design_patterns.behavioral.template_method import StringDataFile
 
 
 @pytest.mark.parametrize(

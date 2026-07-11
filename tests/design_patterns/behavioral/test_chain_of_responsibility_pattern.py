@@ -1,7 +1,7 @@
 import pytest
 from _pytest.logging import LogCaptureFixture
 
-from design_patterns.behavioral.chain_of_responsibility_pattern import (
+from design_patterns.behavioral.chain_of_responsibility import (
     CheckEmail,
     CheckIsActive,
     CheckName,
