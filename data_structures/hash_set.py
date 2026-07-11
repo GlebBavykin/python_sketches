@@ -18,14 +18,14 @@ class HashSet(collections.abc.MutableSet):
     def __len__(self):
         return len(self._data_store)
 
-    def __contains__(self, element):
-        if self._data_store.get(element, False):
+    def __contains__(self, value):
+        if self._data_store.get(value, False):
             return True
         else:
             return False
 
-    def add(self, element):
-        self._data_store.insert(element, True)
+    def add(self, value):
+        self._data_store.insert(value, True)
 
-    def discard(self, element):
-        return self._data_store.pop(element, False)
+    def discard(self, value):
+        return self._data_store.pop(value, False)
