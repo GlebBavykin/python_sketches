@@ -5,7 +5,7 @@ on:
 
 jobs:
   test:
-    runs-on: img-ubuntu-24.04
+    runs-on: img-ubuntu-latest
 
     steps:
       - name: Checkout repository
