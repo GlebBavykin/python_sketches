@@ -8,12 +8,6 @@ jobs:
     runs-on: img-ubuntu-22.04
 
     steps:
-      - name: Install Node.js
-        run: |
-          apt-get update
-          apt-get install -y nodejs
-      - uses: actions/checkout@v4
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
