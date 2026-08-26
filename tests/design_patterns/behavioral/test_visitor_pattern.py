@@ -26,7 +26,10 @@ def visitor() -> Visitorable:
     ],
 )
 def test_visitor_for_composite_expression(
-    expression: ExpressionItem, visitor: Visitorable, caplog: LogCaptureFixture, outcome: str
+    expression: ExpressionItem,
+    visitor: Visitorable,
+    caplog: LogCaptureFixture,
+    outcome: str,
 ) -> None:
     """
     Check visitor pattern: accept visitor for composite expression and capture log from the console

@@ -35,7 +35,11 @@ def dialog(send_button: Button, text_field: TextField) -> Mediator:
     ],
 )
 def test_mediator_pattern(
-    text_field: TextField, send_button: Button, dialog: Mediator, message: str, caplog: LogCaptureFixture
+    text_field: TextField,
+    send_button: Button,
+    dialog: Mediator,
+    message: str,
+    caplog: LogCaptureFixture,
 ) -> None:
     """
     Check mediator pattern: send message from text_field by press send_button

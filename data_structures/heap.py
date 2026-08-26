@@ -34,7 +34,9 @@ class PQ:
     Implementation of Heap Priority Queue
     """
 
-    def __init__(self, capacity: int = 5, resizeable: bool = True, max_heap: bool = False) -> None:
+    def __init__(
+        self, capacity: int = 5, resizeable: bool = True, max_heap: bool = False
+    ) -> None:
         if capacity <= 2:
             raise ValueError("Capacity must be > 2")
         else:
@@ -51,7 +53,10 @@ class PQ:
         """
         Swaps two elements at p_index and c_index positions
         """
-        self._storage[p_index], self._storage[c_index] = self._storage[c_index], self._storage[p_index]
+        self._storage[p_index], self._storage[c_index] = (
+            self._storage[c_index],
+            self._storage[p_index],
+        )
 
     def _swim(self, child_index: int) -> None:
         """
@@ -86,7 +91,11 @@ class PQ:
         for entry in self._storage:
             if entry is not None:
                 temp.put(entry.priority, entry.data)
-        self._size, self._capacity, self._storage = temp._size, temp._capacity, temp._storage
+        self._size, self._capacity, self._storage = (
+            temp._size,
+            temp._capacity,
+            temp._storage,
+        )
 
     @property
     def resizeable(self):

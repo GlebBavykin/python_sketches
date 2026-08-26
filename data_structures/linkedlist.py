@@ -127,7 +127,10 @@ class DoublyLinkedList:
     def __reversed__(self):
         current_node = self._tail
         while current_node:
-            current_node.next, current_node.previous = current_node.previous, current_node.next
+            current_node.next, current_node.previous = (
+                current_node.previous,
+                current_node.next,
+            )
             current_node = current_node.next
         self._head, self._tail = self._tail, self._head
         return self

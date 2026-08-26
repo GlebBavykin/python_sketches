@@ -40,7 +40,9 @@ def subscribers(publisher: Publisher) -> list[Listener]:
     "message",
     ["Hello world!"],
 )
-def test_observer_pattern_1(publisher: Publisher, listeners: list[Listener], message: str):
+def test_observer_pattern_1(
+    publisher: Publisher, listeners: list[Listener], message: str
+):
     """
     Test observer pattern: subscribe and notify all subscribers from publisher
     """
@@ -57,7 +59,9 @@ def test_observer_pattern_1(publisher: Publisher, listeners: list[Listener], mes
     "message",
     ["Hello world!"],
 )
-def test_observer_pattern_2(publisher: Publisher, subscribers: list[Listener], message: str):
+def test_observer_pattern_2(
+    publisher: Publisher, subscribers: list[Listener], message: str
+):
     """
     Test observer pattern: unsubscribe all subscribers from publisher
     """

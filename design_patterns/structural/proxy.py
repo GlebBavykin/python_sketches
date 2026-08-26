@@ -48,7 +48,9 @@ class SessionWithLogging:
         return self.session.head(url, **kwargs)
 
     def post(self, url, data=None, json=None, **kwargs) -> Response:
-        logger.info(f"POST {url} with data: {data} data: {data}, json: {json} kwargs: {kwargs}")
+        logger.info(
+            f"POST {url} with data: {data} data: {data}, json: {json} kwargs: {kwargs}"
+        )
         return self.session.post(url, data=data, **kwargs)
 
     def put(self, url, data=None, **kwargs) -> Response:

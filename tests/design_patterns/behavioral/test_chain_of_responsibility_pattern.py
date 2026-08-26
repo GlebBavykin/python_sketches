@@ -39,11 +39,17 @@ def check_is_active(check_email: CheckEmail) -> CheckIsActive:
         (UserRequest(username="John"), ["John"]),
         (UserRequest(email="john@email.com"), ["john@email.com"]),
         (UserRequest(is_active=True), ["active"]),
-        (UserRequest("John", "john@email.com", True), ["active", "john@email.com", "John"]),
+        (
+            UserRequest("John", "john@email.com", True),
+            ["active", "john@email.com", "John"],
+        ),
     ],
 )
 def test_chain_of_responsibility_pattern(
-    user_request: UserRequest, outcomes: list[str], check_is_active: CheckIsActive, caplog: LogCaptureFixture
+    user_request: UserRequest,
+    outcomes: list[str],
+    check_is_active: CheckIsActive,
+    caplog: LogCaptureFixture,
 ) -> None:
     """
     Check chain of responsibility pattern: user request go through all chain print and capture logs

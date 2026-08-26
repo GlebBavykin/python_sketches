@@ -31,7 +31,12 @@ class Expression:
     Container of numbers and operation
     """
 
-    def __init__(self, operand_a: Number | Expression, operation: Callable, operand_b: Number | Expression):
+    def __init__(
+        self,
+        operand_a: Number | Expression,
+        operation: Callable,
+        operand_b: Number | Expression,
+    ):
         self._operand_a = operand_a
         self._operation = operation
         self._operand_b = operand_b

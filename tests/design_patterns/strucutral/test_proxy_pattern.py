@@ -21,7 +21,9 @@ def session_with_logging(session: Session) -> SessionWithLogging:
     return SessionWithLogging(session)
 
 
-def test_check_logging_feature(session_with_logging: SessionWithLogging, caplog: LogCaptureFixture) -> None:
+def test_check_logging_feature(
+    session_with_logging: SessionWithLogging, caplog: LogCaptureFixture
+) -> None:
     """
     Check logging feature for session request
     """
