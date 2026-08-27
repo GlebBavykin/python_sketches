@@ -6,6 +6,7 @@ from _pytest.capture import CaptureFixture
 from data_structures.binary_tree import (
     Node,
     inorder_traversal,
+    levelorder_traversal,
     postorder_traversal,
     preorder_traversal,
 )
@@ -35,6 +36,7 @@ def binary_tree() -> Node:
         (preorder_traversal, "5 12 7 14 13 2 "),
         (inorder_traversal, "7 12 14 5 13 2 "),
         (postorder_traversal, "7 14 12 2 13 5 "),
+        (levelorder_traversal, "5 12 13 7 14 2 "),
     ],
 )
 def test_binary_tree_traversal_methods(
