@@ -49,15 +49,11 @@ Shared Key:  {self._shared_key}
 __________________________________________________"""
 
     def _make_public_key(self):
-        self._public_key = (
-            pow(self._crypto_base.base, self._private_key) % self._crypto_base.modulus
-        )
+        self._public_key = pow(self._crypto_base.base, self._private_key) % self._crypto_base.modulus
         return self.public_key
 
     def _hash(self, other: Participant):
-        self._shared_key = (
-            pow(other.public_key, self._private_key) % self._crypto_base.modulus
-        )
+        self._shared_key = pow(other.public_key, self._private_key) % self._crypto_base.modulus
 
     @property
     def public_key(self) -> int:

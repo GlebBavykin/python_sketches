@@ -8,9 +8,7 @@ logger = logging.getLogger(__name__)
 class AuthStrategy(ABC):
     @abstractmethod
     def authenticate(self, user: str):
-        raise NotImplementedError(
-            "This is a strategy method. You should implement this!"
-        )
+        raise NotImplementedError("This is a strategy method. You should implement this!")
 
 
 # 2. Конкретные стратегии

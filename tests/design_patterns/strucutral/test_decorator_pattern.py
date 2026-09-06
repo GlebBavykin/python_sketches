@@ -35,9 +35,7 @@ def data() -> str:
         ZlibDecorator,
     ],
 )
-def test_write_data_with_decorators(
-    handler: FileHandler, data: str, decorator: type[Base64Decorator | ZlibDecorator]
-):
+def test_write_data_with_decorators(handler: FileHandler, data: str, decorator: type[Base64Decorator | ZlibDecorator]):
     """
     Write/Read string data with different decorators
     """

@@ -23,9 +23,7 @@ def caretaker(originator: Originator) -> Caretaker:
     "previous_text, new_text",
     [("Hello world!", "Bye world!")],
 )
-def test_memento_pattern_1(
-    originator: Originator, caretaker: Caretaker, previous_text: str, new_text: str
-) -> None:
+def test_memento_pattern_1(originator: Originator, caretaker: Caretaker, previous_text: str, new_text: str) -> None:
     """
     Test memento pattern: change originator text and undo it to previous text
     """

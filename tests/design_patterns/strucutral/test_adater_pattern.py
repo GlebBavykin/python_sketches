@@ -65,9 +65,7 @@ def test_round_incompatibility(hole: RoundHole, peg: SquarePeg, is_compatible: b
         (SquarePeg(WIDTH - 0.5, HEIGHT + 10), False),
     ],
 )
-def test_round_compatibility_with_adapter(
-    hole: RoundHole, peg: SquarePeg, is_compatible: bool
-):
+def test_round_compatibility_with_adapter(hole: RoundHole, peg: SquarePeg, is_compatible: bool):
     """
     Test whether adapter is compatible with a round hole
     """

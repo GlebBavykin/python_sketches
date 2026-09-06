@@ -34,9 +34,7 @@ class PQ:
     Implementation of Heap Priority Queue
     """
 
-    def __init__(
-        self, capacity: int = 5, resizeable: bool = True, max_heap: bool = False
-    ) -> None:
+    def __init__(self, capacity: int = 5, resizeable: bool = True, max_heap: bool = False) -> None:
         if capacity <= 2:
             raise ValueError("Capacity must be > 2")
         else:

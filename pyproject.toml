@@ -9,7 +9,8 @@ dependencies = [
     "PyYAML",
     "faker",
     "requests",
-    "pytest-xdist"
+    "pytest-xdist",
+    "pydantic>=2.13.5",
 ]
 
 [dependency-groups]
@@ -30,7 +31,7 @@ skip-magic-trailing-comma = false
 
 
 [tool.isort]
-profile = "black"
+profile = "ruff"
 line_length = 88
 
 

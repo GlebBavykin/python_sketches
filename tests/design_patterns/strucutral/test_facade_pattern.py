@@ -39,9 +39,7 @@ def order_facade(inventory: Inventory) -> OrderFacade:
     return OrderFacade(inventory)
 
 
-def test_place_order_without_facade(
-    inventory: Inventory, cup_of_coffee: tuple[Item, Item, Item]
-):
+def test_place_order_without_facade(inventory: Inventory, cup_of_coffee: tuple[Item, Item, Item]):
     """
     Check inventory and place order without OrderFacade
     """
@@ -64,9 +62,7 @@ def test_place_order_without_facade(
     assert order.calculate_total() == 7.5
 
 
-def test_place_order_with_facade(
-    order_facade: OrderFacade, cup_of_coffee: tuple[Item, Item, Item]
-):
+def test_place_order_with_facade(order_facade: OrderFacade, cup_of_coffee: tuple[Item, Item, Item]):
     """
     Check inventory and place order with OrderFacade
     """

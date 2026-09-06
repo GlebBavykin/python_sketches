@@ -36,9 +36,7 @@ class TreeFactory:
 
     treeTypes: Dict[str, TreeType] = {}
 
-    def get_tree_type(
-        self, name: str, color: Optional[str] = None, texture: Optional[str] = None
-    ) -> TreeType:
+    def get_tree_type(self, name: str, color: Optional[str] = None, texture: Optional[str] = None) -> TreeType:
         tree = self.treeTypes.get(name, None)
         if tree is None:
             tree = TreeType(name, color, texture)

@@ -24,9 +24,7 @@ def auth() -> AuthContext:
         (UserAuth(), "Regular user Authorization"),
     ],
 )
-def test_strategy_pattern(
-    strategy: AuthStrategy, auth: AuthContext, caplog: LogCaptureFixture, outcome: str
-):
+def test_strategy_pattern(strategy: AuthStrategy, auth: AuthContext, caplog: LogCaptureFixture, outcome: str):
     """
     Test strategy pattern
     """

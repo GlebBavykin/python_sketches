@@ -11,13 +11,7 @@ class Director:
         self._builder.produce_part_a()
 
     def build_full_featured_product(self) -> None:
-        (
-            self._builder.produce_part_a()
-            .produce_part_c()
-            .produce_part_a()
-            .produce_part_b()
-            .produce_part_a()
-        )
+        (self._builder.produce_part_a().produce_part_c().produce_part_a().produce_part_b().produce_part_a())
 
 
 @pytest.fixture(scope="class")
