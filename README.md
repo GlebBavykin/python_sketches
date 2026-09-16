@@ -25,5 +25,5 @@
 Чтобы запустить тестовый прогон на [pytest](https://docs.pytest.org/en/stable/), следует выполнить:
 
   ````bash
-  uv run pytest -n auto
+  pytest -n auto
   ````
