@@ -1,7 +1,7 @@
 # Python Sketches
 
 В настоящем проекте собраны [алгоритмы](./algorithms/), [структуры данных](./data_structures/), [паттерны проектирования](./design_patternss/) реализованные на `python3`.
-Код был написан с использованием `TDD (Test-Driven Development)` методологии. На каждую идею написан автотест 
+Код был написан с использованием TDD (Test-Driven Development) методологии. На каждую идею написан автотест 
 в папке [tests](./tests/).
 
 Чтобы развернуть тестовое окружение через [uv](https://docs.astral.sh/uv/getting-started/installation/), следует выполнить:
