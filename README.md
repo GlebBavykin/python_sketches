@@ -4,7 +4,7 @@
 Код был написан с использованием TDD (Test-Driven Development) методологии. На каждую идею написан автотест 
 в папке [tests](./tests/).
 
-Чтобы развернуть тестовое окружение через [uv](https://docs.astral.sh/uv/getting-started/installation/), следует выполнить:
+Чтобы развернуть окружение через [uv](https://docs.astral.sh/uv/getting-started/installation/), следует выполнить:
 
   - для Ubuntu 26.04:
       ```bash
