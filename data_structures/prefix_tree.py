@@ -8,7 +8,7 @@ class TrieNode(BaseModel):
     Trie Node
     """
 
-    children: List[Self | None] = Field(default_factory=lambda: [None] * 26, description="List of children")
+    children: List[Self | None] = Field(default=[None] * 26, description="List of children")
     is_end_of_word: bool = Field(default=False, description="Is this a end node?")
 
     @property
