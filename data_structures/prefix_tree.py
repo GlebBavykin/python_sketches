@@ -89,6 +89,7 @@ class Trie:
         """
         Remove word from this Trie
         """
+
         def _remove(node: TrieNode | None, word: str, depth: int = 0) -> TrieNode | None:
 
             if not node:
