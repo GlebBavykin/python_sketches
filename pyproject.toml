@@ -20,6 +20,7 @@ dev = [
     "mypy",
     "pyright",
     "pytest",
+    "pytest-timeout>=2.4.0",
     "pytest-xdist",
     "ruff",
 ]
